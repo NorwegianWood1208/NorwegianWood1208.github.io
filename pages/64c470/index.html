@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>一节课彻底弄懂同步异步 | Jerry&#39;s blog</title>
+    <meta name="generator" content="VuePress 1.9.5">
+    <link rel="icon" href="/img/j_by_climei.png">
+    <meta name="description" content="个人博客,分享自己对于这个世界一些不客观的观点。">
+    <meta name="keywords" content="前端博客,个人技术博客,前端,前端开发,前端框架,web前端,前端面试题,技术文档,学习,面试,JavaScript,js,ES6,TypeScript,vue,python,css3,html5,Node,git,github,markdown">
+    <meta name="theme-color" content="#11a8cd">
+    
+    <link rel="preload" href="/assets/css/0.styles.bf9de544.css" as="style"><link rel="preload" href="/assets/js/app.833fe341.js" as="script"><link rel="preload" href="/assets/js/2.0bc0feeb.js" as="script"><link rel="preload" href="/assets/js/62.773a188c.js" as="script"><link rel="prefetch" href="/assets/js/10.e63e1ad5.js"><link rel="prefetch" href="/assets/js/11.4bf61c9d.js"><link rel="prefetch" href="/assets/js/12.83728bc0.js"><link rel="prefetch" href="/assets/js/13.6a2f4699.js"><link rel="prefetch" href="/assets/js/14.eeb8e594.js"><link rel="prefetch" href="/assets/js/15.38fb8c74.js"><link rel="prefetch" href="/assets/js/16.c7d7c8be.js"><link rel="prefetch" href="/assets/js/17.39f1358c.js"><link rel="prefetch" href="/assets/js/18.8df6179b.js"><link rel="prefetch" href="/assets/js/19.2c717924.js"><link rel="prefetch" href="/assets/js/20.5bb44cfc.js"><link rel="prefetch" href="/assets/js/21.7d801f6b.js"><link rel="prefetch" href="/assets/js/22.49d97dc1.js"><link rel="prefetch" href="/assets/js/23.7cb1676a.js"><link rel="prefetch" href="/assets/js/24.7826f9de.js"><link rel="prefetch" href="/assets/js/25.331591c5.js"><link rel="prefetch" href="/assets/js/26.04a034dd.js"><link rel="prefetch" href="/assets/js/27.2a084421.js"><link rel="prefetch" href="/assets/js/28.acf290b3.js"><link rel="prefetch" href="/assets/js/29.6c3c2870.js"><link rel="prefetch" href="/assets/js/3.7c9b3e6a.js"><link rel="prefetch" href="/assets/js/30.4605178f.js"><link rel="prefetch" href="/assets/js/31.e54e3d1a.js"><link rel="prefetch" href="/assets/js/32.1a9d85b8.js"><link rel="prefetch" href="/assets/js/33.ab45d168.js"><link rel="prefetch" href="/assets/js/34.dad7b3e2.js"><link rel="prefetch" href="/assets/js/35.8af270ac.js"><link rel="prefetch" href="/assets/js/36.7421c201.js"><link rel="prefetch" href="/assets/js/37.0a0e7f93.js"><link rel="prefetch" href="/assets/js/38.7e9ebf30.js"><link rel="prefetch" href="/assets/js/39.f3896093.js"><link rel="prefetch" href="/assets/js/4.64631ee0.js"><link rel="prefetch" href="/assets/js/40.3cda4839.js"><link rel="prefetch" href="/assets/js/41.e2a64e62.js"><link rel="prefetch" href="/assets/js/42.2420bfc8.js"><link rel="prefetch" href="/assets/js/43.0a154c85.js"><link rel="prefetch" href="/assets/js/44.d29c7c56.js"><link rel="prefetch" href="/assets/js/45.3c6d3054.js"><link rel="prefetch" href="/assets/js/46.57938edd.js"><link rel="prefetch" href="/assets/js/47.cf4eec93.js"><link rel="prefetch" href="/assets/js/48.c49722a5.js"><link rel="prefetch" href="/assets/js/49.e0554b6b.js"><link rel="prefetch" href="/assets/js/5.94358016.js"><link rel="prefetch" href="/assets/js/50.22427026.js"><link rel="prefetch" href="/assets/js/51.da445b69.js"><link rel="prefetch" href="/assets/js/52.9fb23354.js"><link rel="prefetch" href="/assets/js/53.bddd71bf.js"><link rel="prefetch" href="/assets/js/54.d96f08aa.js"><link rel="prefetch" href="/assets/js/55.3cd93769.js"><link rel="prefetch" href="/assets/js/56.470c91e2.js"><link rel="prefetch" href="/assets/js/57.669d8f7c.js"><link rel="prefetch" href="/assets/js/58.0258d540.js"><link rel="prefetch" href="/assets/js/59.f996d58c.js"><link rel="prefetch" href="/assets/js/6.6c8dcd68.js"><link rel="prefetch" href="/assets/js/60.7d4a5cb2.js"><link rel="prefetch" href="/assets/js/61.9a5050e0.js"><link rel="prefetch" href="/assets/js/63.79883564.js"><link rel="prefetch" href="/assets/js/64.14ed9064.js"><link rel="prefetch" href="/assets/js/65.17bd66c3.js"><link rel="prefetch" href="/assets/js/66.daeea4e3.js"><link rel="prefetch" href="/assets/js/67.43c4d763.js"><link rel="prefetch" href="/assets/js/68.e837b336.js"><link rel="prefetch" href="/assets/js/69.bfa2c868.js"><link rel="prefetch" href="/assets/js/7.ca1c7a37.js"><link rel="prefetch" href="/assets/js/70.fcfc76ae.js"><link rel="prefetch" href="/assets/js/71.091c120b.js"><link rel="prefetch" href="/assets/js/72.512f6e5a.js"><link rel="prefetch" href="/assets/js/73.4a796d0f.js"><link rel="prefetch" href="/assets/js/74.ac08f769.js"><link rel="prefetch" href="/assets/js/75.955754fa.js"><link rel="prefetch" href="/assets/js/76.09e93953.js"><link rel="prefetch" href="/assets/js/77.741fe89c.js"><link rel="prefetch" href="/assets/js/78.9aba5024.js"><link rel="prefetch" href="/assets/js/79.4423e146.js"><link rel="prefetch" href="/assets/js/8.c6a036e6.js"><link rel="prefetch" href="/assets/js/80.b165ad67.js"><link rel="prefetch" href="/assets/js/81.b55fb697.js"><link rel="prefetch" href="/assets/js/82.9d080867.js"><link rel="prefetch" href="/assets/js/83.d2c50764.js"><link rel="prefetch" href="/assets/js/84.244a3973.js"><link rel="prefetch" href="/assets/js/85.4c3be661.js"><link rel="prefetch" href="/assets/js/86.456440c2.js"><link rel="prefetch" href="/assets/js/87.4435302a.js"><link rel="prefetch" href="/assets/js/88.5742f5e2.js"><link rel="prefetch" href="/assets/js/89.98dad43c.js"><link rel="prefetch" href="/assets/js/9.815d0cbf.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.bf9de544.css">
+  </head>
+  <body class="theme-mode-light">
+    <div id="app" data-server-rendered="true"><div class="theme-container sidebar-open have-rightmenu have-body-img"><header class="navbar blur"><div title="目录" class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/img/j_by_climei.png" alt="Jerry's blog" class="logo"> <span class="site-name can-hide">Jerry's blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="读书" class="dropdown-title"><a href="/read/" class="link-title">读书</a> <span class="title" style="display:none;">读书</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/read/fdba22/" class="nav-link">2022年2月</a></li><li class="dropdown-item"><!----> <a href="/read/a61298/" class="nav-link">《沧浪之水》</a></li><li class="dropdown-item"><!----> <a href="/pages/bd7714/" class="nav-link">《置身事内》</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="生活" class="dropdown-title"><a href="/life/" class="link-title">生活</a> <span class="title" style="display:none;">生活</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/pages/bb5866/" class="nav-link">转载禅与摩托车维修</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="技术" class="dropdown-title"><a href="/technology/" class="link-title">技术</a> <span class="title" style="display:none;">技术</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/pages/0c8a93/" class="nav-link">快速配置前端的Macbook</a></li><li class="dropdown-item"><!----> <a href="/pages/811b36/" class="nav-link">vite核心原理及在vue2项目中的使用</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="更多" class="dropdown-title"><a href="/more/" class="link-title">更多</a> <span class="title" style="display:none;">更多</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>足球</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/pages/4c17d5/" class="nav-link">《记在2021年法国队淘汰后》</a></li><li class="dropdown-subitem"><a href="/pages/96be87/" class="nav-link">我们为什么喜欢足球</a></li></ul></li></ul></div></div><div class="nav-item"><a href="/about/" class="nav-link">关于</a></div><div class="nav-item"><a href="/pages/beb6c0bd8a66cea6/" class="nav-link">收藏</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="索引" class="dropdown-title"><a href="/archives/" class="link-title">索引</a> <span class="title" style="display:none;">索引</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/" class="nav-link">分类</a></li><li class="dropdown-item"><!----> <a href="/tags/" class="nav-link">标签</a></li><li class="dropdown-item"><!----> <a href="/archives/" class="nav-link">归档</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar-hover-trigger"></div> <aside class="sidebar" style="display:none;"><div class="blogger"><img src="https://img1.baidu.com/it/u=3110618223,3718234292&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPG?w=500&amp;h=694"> <div class="blogger-info"><h3>Jerry</h3> <span>Kop、摇滚迷、web前端</span></div></div> <nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="读书" class="dropdown-title"><a href="/read/" class="link-title">读书</a> <span class="title" style="display:none;">读书</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/read/fdba22/" class="nav-link">2022年2月</a></li><li class="dropdown-item"><!----> <a href="/read/a61298/" class="nav-link">《沧浪之水》</a></li><li class="dropdown-item"><!----> <a href="/pages/bd7714/" class="nav-link">《置身事内》</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="生活" class="dropdown-title"><a href="/life/" class="link-title">生活</a> <span class="title" style="display:none;">生活</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/pages/bb5866/" class="nav-link">转载禅与摩托车维修</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="技术" class="dropdown-title"><a href="/technology/" class="link-title">技术</a> <span class="title" style="display:none;">技术</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/pages/0c8a93/" class="nav-link">快速配置前端的Macbook</a></li><li class="dropdown-item"><!----> <a href="/pages/811b36/" class="nav-link">vite核心原理及在vue2项目中的使用</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="更多" class="dropdown-title"><a href="/more/" class="link-title">更多</a> <span class="title" style="display:none;">更多</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>足球</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/pages/4c17d5/" class="nav-link">《记在2021年法国队淘汰后》</a></li><li class="dropdown-subitem"><a href="/pages/96be87/" class="nav-link">我们为什么喜欢足球</a></li></ul></li></ul></div></div><div class="nav-item"><a href="/about/" class="nav-link">关于</a></div><div class="nav-item"><a href="/pages/beb6c0bd8a66cea6/" class="nav-link">收藏</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="索引" class="dropdown-title"><a href="/archives/" class="link-title">索引</a> <span class="title" style="display:none;">索引</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/" class="nav-link">分类</a></li><li class="dropdown-item"><!----> <a href="/tags/" class="nav-link">标签</a></li><li class="dropdown-item"><!----> <a href="/archives/" class="nav-link">归档</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>全栈进阶</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>前端技术</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/pages/a35111/" class="sidebar-link">pdfjs实战</a></li><li><a href="/pages/2f782e/" class="sidebar-link">快速配置前端开发的Macbook</a></li><li><a href="/pages/c85756/" class="sidebar-link">vite在vue2项目中的使用</a></li><li><a href="/pages/bcc749/" class="sidebar-link">基于vue3+typescript的后台管理系统</a></li><li><a href="/pages/bd0229/" class="sidebar-link">一小时上手webpack（基础使用指南含demo）</a></li><li><a href="/pages/06b0e3/" class="sidebar-link">nodejs搭建本地服务器来访问本地文件</a></li><li><a href="/pages/a891b9/" class="sidebar-link">前端模块化发展历史</a></li><li><a href="/pages/1fff49/" class="sidebar-link">nodejs实现一个基础的后台服务</a></li><li><a href="/pages/831830/" class="sidebar-link">从零开源一个基于vue的组件到npm</a></li><li><a href="/pages/64c470/" aria-current="page" class="active sidebar-link">一节课彻底弄懂同步异步</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/pages/64c470/#一、什么是同步和异步" class="sidebar-link">一、什么是同步和异步</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/pages/64c470/#_1、什么是同步呢" class="sidebar-link">1、什么是同步呢？</a></li><li class="sidebar-sub-header"><a href="/pages/64c470/#_2、调用栈" class="sidebar-link">2、调用栈</a></li><li class="sidebar-sub-header"><a href="/pages/64c470/#_3、什么是异步呢" class="sidebar-link">3、什么是异步呢？</a></li><li class="sidebar-sub-header"><a href="/pages/64c470/#_4、消息队列" class="sidebar-link">4、消息队列</a></li><li class="sidebar-sub-header"><a href="/pages/64c470/#_5、初识事件轮询" class="sidebar-link">5、初识事件轮询</a></li><li class="sidebar-sub-header"><a href="/pages/64c470/#_6、什么是宏任务-微任务" class="sidebar-link">6、什么是宏任务？微任务？</a></li><li class="sidebar-sub-header"><a href="/pages/64c470/#_7、那么这个2、3、4、5、6执行的过程就是事件轮询。" class="sidebar-link">7、那么这个2、3、4、5、6执行的过程就是事件轮询。</a></li></ul></li><li class="sidebar-sub-header"><a href="/pages/64c470/#二、回调函数" class="sidebar-link">二、回调函数</a></li><li class="sidebar-sub-header"><a href="/pages/64c470/#三、promise" class="sidebar-link">三、promise</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/pages/64c470/#_1、then链式操作" class="sidebar-link">1、then链式操作</a></li><li class="sidebar-sub-header"><a href="/pages/64c470/#_2、catch捕捉操作" class="sidebar-link">2、catch捕捉操作</a></li><li class="sidebar-sub-header"><a href="/pages/64c470/#_3、all" class="sidebar-link">3、all</a></li><li class="sidebar-sub-header"><a href="/pages/64c470/#_4、race" class="sidebar-link">4、race</a></li></ul></li><li class="sidebar-sub-header"><a href="/pages/64c470/#四、generator-函数" class="sidebar-link">四、Generator 函数</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/pages/64c470/#_1、什么是-generator-函数" class="sidebar-link">1、什么是 Generator 函数？</a></li></ul></li><li class="sidebar-sub-header"><a href="/pages/64c470/#五、async、await" class="sidebar-link">五、async、await</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/pages/64c470/#_1、什么是async、await" class="sidebar-link">1、什么是async、await？</a></li><li class="sidebar-sub-header"><a href="/pages/64c470/#_2、async、await项目中的使用" class="sidebar-link">2、async、await项目中的使用</a></li></ul></li></ul></li><li><a href="/pages/d82546/" class="sidebar-link">类似商品筛选的插件</a></li><li><a href="/pages/1e2fa8/" class="sidebar-link">elementTable组件固定表头且高度自适应</a></li><li><a href="/pages/db2556/" class="sidebar-link">js高阶函数和单例设计模式</a></li><li><a href="/pages/33f02d/" class="sidebar-link">js 变量提升</a></li><li><a href="/pages/ac4ec8/" class="sidebar-link">nodeJs获取常用的4种post请求参数</a></li><li><a href="/pages/eb3d07/" class="sidebar-link">买一个服务器搭建node服务</a></li><li><a href="/pages/f8599a/" class="sidebar-link">vue性能优化方案，解决首页加载慢</a></li><li><a href="/pages/a3201e/" class="sidebar-link">动态路由前端控制还是后端控制</a></li><li><a href="/pages/b478f3/" class="sidebar-link">一节课彻底弄懂promise、async、await（一）</a></li><li><a href="/pages/633ae0/" class="sidebar-link">你不一定了解的js数据类型（二）</a></li><li><a href="/pages/0016fb/" class="sidebar-link">你不一定了解的js数据类型（一）</a></li><li><a href="/pages/96fde7/" class="sidebar-link">一节课彻底弄懂promise、async、await（三）完结篇</a></li><li><a href="/pages/cb71ab/" class="sidebar-link">一节课彻底弄懂promise、async、await（二）</a></li><li><a href="/pages/803139/" class="sidebar-link">js闭包</a></li></ul></section></li></ul> </aside> <div><main class="page"><div class="theme-vdoing-wrapper "><div class="articleInfo-wrap" data-v-0c557b5e><div class="articleInfo" data-v-0c557b5e><ul class="breadcrumbs" data-v-0c557b5e><li data-v-0c557b5e><a href="/" title="首页" class="iconfont icon-home router-link-active" data-v-0c557b5e></a></li> <li data-v-0c557b5e><a href="/technology/#技术" data-v-0c557b5e>技术</a></li><li data-v-0c557b5e><a href="/technology/#前端技术" data-v-0c557b5e>前端技术</a></li></ul> <div class="info" data-v-0c557b5e><div title="作者" class="author iconfont icon-touxiang" data-v-0c557b5e><a href="https://github.com/NorwegianWood1208" target="_blank" title="作者" class="beLink" data-v-0c557b5e>Jerry</a></div> <div title="创建时间" class="date iconfont icon-riqi" data-v-0c557b5e><a href="javascript:;" data-v-0c557b5e>2022-03-09</a></div> <!----></div></div></div> <!----> <div class="content-wrapper"><div class="right-menu-wrapper"><div class="right-menu-margin"><div class="right-menu-content"></div></div></div> <h1><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAABKFJREFUSA3tVl1oFVcQnrMbrak3QUgkya1akpJYcrUtIqW1JvFBE9LiQ5v6JmJpolbMg32rVrhgoYK0QiMY6i9Y6EMaW5D+xFJaTYItIuK2Kr3+BJNwkxBj05sQY3b3nM6cs2dv9t7NT/vQJw/sndk5M/PNzJkzewGerP+pAmy+ON8lLzUJgA8ZYxYIYZmGYRnctDaWvJJAmTtfP1pvXsBCCPP8QFcCaRkZYACgDZFO4stNIcBCajEOlmmC9XpJ9bAGCaPaPmzPl32dvLSVu3BWCTQs0XQQ6g0DYgwLIoAZbBCdW/i+781o1VVlm/410mw4h06Y7bIPHNyWDyL4FHkX03Q8SrzNhZTZriieckWt7cL6MM85YcLpsi/7O9/iXFT6MswI0DmmpkSaJ0qLxFIm3+i1THHB3zmBH3PYx9CcykcLOeQVVa7QtdxTgQgEleX2AjHYfwA+2ddV77ruGoJUbhGDI09YSNXyMpUt5ylOzxgbUmtOp7NmbNt8v3arjTBfYELmLUV+M+nSawNNAUqpT3ClJWg5I3BLT+cGW/DXNGCa6tx1aakCGEigArTn4TDIPdrXXYKCZNrHLMCOEPvHBlLQ99s9eHB7EB6NTki73CVPQ2F5MSx/uRQixfmq7rK0wYD8w8E905bnPDfwoWs/rfv93NWN/ZfvwsLIU7A09gxECyISeGJkHAau98L97tuw7NXnoPyNF8FcYGLGKsOs0mN3OEyec9esGW/ZEl945dTP34wlR2FZVQWU1q0Cw8Tr7p+hgLLNL0FPxx/Q35mA8aEUrH6nCgwEl0tn7wUiZYJnNRh6DK4UH/k0lfyrsBKdPVv/AriGIQcEDQZ65LBAGe2Rzui9Ybjz7XUppz1/uKBbyVPGkN3ZAeC6hr0x7Nr38N5+EqkoOm17xpoqR9ohQF55ERSvr4Dkr3chNfC3DMzGJlNBElW8w9nsGQvhNGIzDkXzCg8cLK951xHsFBlTJspJNi3ZFIMF2AeDV3q8DNOB+YHi6QTrChDIWDBRi5U5f+ZMfJLu3ccrqxtdxk4SKH336LFxSmkqefwU5T8fhdSdQf9IVKD6aNiwI/hnmcAZ91isYMJIaCUCx9W098+LgruikeTqzqqxKPUwqJyCPJiyemVVZBOijDGjD38Os0jOiSPL1z3SPjXNANbiNPXAdzTfukjjuknNBbyz3nwgTd3AVFqUJ5hpHlq9MveLnWwttUfoygBmvVjuikxND3znrhsELnZk7k+OjIGxeNEkomyLVta0xxn+HZhjBc4YZ/AFjHjz9u3xRZl2BN4aq9nFwWh16IrQ1aHHEd3j1+4/dB9OtH4e29A2H1DyHQRmOSfQZ1Fy7MHBTGB6J/Djq6p3OxyO2cB+4Car7v/o3GXgfAkj23+x9ID1Teoamo/SXcbvSf2PX7Vc8DdCmE1vN9di+32P9/5YR3vLnhCVGUWBjEkr3yh4H8v9CzmsbdhzOKzsJKM90iFdaTMjRPhGVsakRvOaRidljo6H6G7j+ctrJpsP+4COhDIl0La2+FS4+5mlocBaXY5QnGZysIBYoeSsl5qQzrSj/cgNrfuEzlWBfwA+EjrZyWUvpAAAAABJRU5ErkJggg==">一节课彻底弄懂同步异步<!----></h1>  <div class="theme-vdoing-content content__default"><p>刚接触js的时候，对于es6的promise、async、await简直怕的要死，甚至有段时间非常害怕promise这个词，随着后面慢慢的接触，觉得这个东西并非那么难理解，主要还是需要弄懂js的一些基础知识。那么接下来，跟上我的思路，一起彻底弄懂promise、async、await。</p> <p>关于这个系列一共三个比较重要的知识点：</p> <div class="language- extra-class"><pre><code>1、关于什么同步、异步，其中涉及了一些堆栈和消息队列、事件轮询的知识；
+
+2、关于异步编程的几个解决方案，主要是回调函数和promise；
+
+3、关于异步编程的终极解决方案Generator函数以及他的语法糖async、await。
+</code></pre></div><p>如果要弄懂promise，就必须弄懂什么是异步、什么是同步，这篇文章主要是讲一下什么是同步、什么是异步。</p> <h4 id="js是怎么来的"><a href="#js是怎么来的" class="header-anchor">#</a> js是怎么来的？</h4> <p>任何新语言的出现肯定是与他当时的需求有关系的，js全称是Javascript，诞生于1995年（跟我同岁）。最初他的诞生就是为了表单提交的时候做提示用的，在js问世之前，所有的表单都必须提交到服务端才能校验必填项。</p> <p>比如你想申请一个qq号，各种信息填了一大堆，提交完才知道，你手机号少输入了一位重新输入，那肯定砸电脑的心都有了，这个时候，js出生了，因为是跟用户做实时交互的，所以最早叫livescript，当时为了蹭蹭Java的热度，上户口的时候就改成了Javascript，一不小心长大了可以跟Java平起平坐了。</p> <h4 id="js为什么是单线程"><a href="#js为什么是单线程" class="header-anchor">#</a> js为什么是单线程</h4> <p>js从诞生之初就是单线程，那为什么是单线程呢？为了让我们这些菜鸡更容易入门？当然不是。</p> <p>js主要的用途就是操作DOM，以及与用户的交互，这就决定了他只能是单线程，
+比如你这个线程创建了一个DOM，那个线程给删除了，这时候浏览器应该以哪个为准，
+所以这个应该永远不会变，你前端发展的能造火箭了，js肯定也是单线程的。</p> <h2 id="一、什么是同步和异步"><a href="#一、什么是同步和异步" class="header-anchor">#</a> 一、什么是同步和异步</h2> <h3 id="_1、什么是同步呢"><a href="#_1、什么是同步呢" class="header-anchor">#</a> 1、什么是同步呢？</h3> <p>你可以理解为同一个时间，你只能干一件事。今天下班早，你想给女朋友打个电话，女朋友可能跟其他小伙伴一起吃饭呢，
+由于手机静音，所以听不到，你就一直打，一直打，啥都没干，把时间都浪费了，这就叫同步。因为js是单线程的嘛，所以js从小就是同步的。</p> <div class="language- extra-class"><pre><code>来一段代码：
+function second() {
+    console.log('second')
+}
+function first(){
+    console.log('first')
+    second()
+    console.log('Last')
+}
+first()
+
+这个很简单，执行打印结果：
+first、second、last
+</code></pre></div><p>那么js执行这段代码，到底发生了什么呢？这里面又有一个‘调用栈’的概念</p> <h3 id="_2、调用栈"><a href="#_2、调用栈" class="header-anchor">#</a> 2、调用栈</h3> <p>是不是一听到什么堆栈就害怕，别慌，没那么复杂，你可以理解为一个厕所，大家去上厕所，但是！不是先进先出，而是后进先出。用调用栈的概念，解释一下上面代码的执行顺序：</p> <div class="language- extra-class"><pre><code>当执行此代码时，将创建一个全局执行上下文并将其推到调用堆栈的顶部；// 这个不太重要，下面是重点
+first()函数先上，现在他在顶部；
+然后打印‘first’，然后执行完了，这个时候这个console.log会自动弹走，就是这个console.log虽然是后进来的，但是他先走了；
+现在first函数仍然在顶部，他下面还有second函数，所以不会弹走；
+执行second()函数,这时候second函数在顶部；
+打印‘second’，然后执行完了，弹走这个console.log，这时候second在顶部；
+这个时候second函数的事儿都干完了，他也弹走了，这时候first函数在顶部；
+浏览器会问，first你还有事吗，first说我还有一个，执行打印‘last’
+</code></pre></div><h3 id="_3、什么是异步呢"><a href="#_3、什么是异步呢" class="header-anchor">#</a> 3、什么是异步呢？</h3> <p>电话没打通，你就给女朋友发了个短信，洗澡去了，你回家了告诉我，（等我洗完了）再打给你，这就是异步。后来为了提高效率，把浏览器的多个内核都用起来，HTML5提出Web Worker标准，允许JavaScript脚本创建多个线程，但是子线程完全受主线程控制，且不得操作DOM。</p> <p>所以这并没有影响js单线程的本质，js还是每次只能干一件事,只不过把洗澡提前了而已。</p> <div class="language- extra-class"><pre><code>来段代码：
+const getList = () =&gt; {
+    setTimeout(() =&gt; {
+        console.log('我执行了！');
+    }, 2000);
+};
+console.log('Hello World');
+getList();
+console.log('哈哈哈');
+
+执行顺序是：
+Hello World、哈哈哈、我执行了！（两秒以后执行最后一个）
+</code></pre></div><p>这段代码执行，又发生了什么呢？这个地方又有一个‘消息队列’的概念，不慌！</p> <h3 id="_4、消息队列"><a href="#_4、消息队列" class="header-anchor">#</a> 4、消息队列</h3> <p>刚才我们说了，同步的时候，浏览器会维护一个‘执行栈’，除了执行栈，在开启多线程的时候，浏览器还会维护一个消息列表，除了主线程，其余的都是副线程，这些副线程合起来就叫消息列表。</p> <p>我们用消息列表的概念分析一下上面的代码：</p> <div class="language- extra-class"><pre><code>按照执行顺序console.log('Hello World')先执行，浏览器一看，中央军（主线程）！你先过；
+然后是getlist函数执行，浏览器看到setTimeout,你是八L（副线程）！你先靠边等着；
+然后是console.log('哈哈哈')执行，中央军（主线程）！你也过；
+然后浏览器问，还有中央军吗？没了，八L开始过！
+</code></pre></div><h5 id="增加难度"><a href="#增加难度" class="header-anchor">#</a> 增加难度：</h5> <div class="language- extra-class"><pre><code>setTimeout(function() {
+    console.log('我是定时器！');
+})
+new Promise(function(resolve) {
+    console.log('我是promise！');
+    resolve();
+}).then(function() {
+    console.log('我是then！');
+})
+console.log('我是主线程！');
+
+执行顺序：
+我是promise！
+我是主线程！
+我是then！
+我是定时器！
+</code></pre></div><p>为什么promise.then比定时器先执行呢？这个里面又涉及了一个‘事件轮询’的概念。</p> <h3 id="_5、初识事件轮询"><a href="#_5、初识事件轮询" class="header-anchor">#</a> 5、初识事件轮询</h3> <p>上面我们说了，浏览器为了提升效率，为js开启了一个不太一样的多线程，因为js不能同时执行嘛，那副线程（注意是副线程里面哈）里面谁执行，这个选择的过程，就可以理解为事件轮询。我们先用事件轮询的顺序分析一下上面的代码，再来上概念：</p> <div class="language- extra-class"><pre><code>promise函数肯定首先执行，他是主线程嘛，打印‘我是promise’；
+然后继续走主线程，打印‘我是主线程’；
+然后主线程走完了，开始走消息列表；
+（宏任务和微任务一会再讲）
+这个时候会先执行promise.then，因为他是微任务，里面的‘我是then！’
+消息列表里面在上面的是定时器，但是定时器是宏任务，优先级比较低，所以会往后排；
+</code></pre></div><h3 id="_6、什么是宏任务-微任务"><a href="#_6、什么是宏任务-微任务" class="header-anchor">#</a> 6、什么是宏任务？微任务？</h3> <div class="language- extra-class"><pre><code>**宏任务（Macrotasks）：**js同步执行的代码块，setTimeout、setInterval、XMLHttprequest、setImmediate、I/O、UI rendering等。
+
+**微任务（Microtasks）：**promise、process.nextTick（node环境）、Object.observe, MutationObserver等。
+
+微任务比宏任务要牛逼一点
+
+浏览器执行的顺序：
+(1)执行主代码块，这个主代码块也是宏任务
+(2)若遇到Promise，把then之后的内容放进微任务队列
+(3)遇到setTimeout，把他放到宏任务里面
+(4)一次宏任务执行完成，检查微任务队列有无任务 
+(5)有的话执行所有微任务 
+(6)执行完毕后，开始下一次宏任务。
+</code></pre></div><h3 id="_7、那么这个2、3、4、5、6执行的过程就是事件轮询。"><a href="#_7、那么这个2、3、4、5、6执行的过程就是事件轮询。" class="header-anchor">#</a> 7、那么这个2、3、4、5、6执行的过程就是事件轮询。</h3> <p>在这儿感谢掘金大神的文章，为了表示尊重，挂上地址！</p> <p>https://juejin.im/post/5e1d0de3e51d455887067f90</p> <p>上一篇呢，主要是聊了聊同步、异步，他们各自引申出来的‘执行栈’、‘消息队列’，以及‘宏任务’、‘微任务’，如果大家对这几个概念不太了解，可以去这个链接：</p> <p>https://www.jianshu.com/p/61e7844e68d8</p> <h2 id="二、回调函数"><a href="#二、回调函数" class="header-anchor">#</a> 二、回调函数</h2> <p>上面咱们说了，宏任务与微任务都是异步的，其中包括ajax请求、计时器等等，我们初步的了解一下promise，知道他是解决异步的一种方式，那么我们常用的一共有哪几种方法呢?第一种就是回调函数。</p> <div class="language- extra-class"><pre><code>先上代码：
+function f2() {
+    console.log('2222')
+}
+function f1(callback){
+    console.log('111')
+　　setTimeout(function () {
+　　　　callback(); 
+　　}, 5000);
+　　console.log('3333')
+}
+f1(f2);
+
+先看下打印值是：
+111
+3333
+五秒后2222
+</code></pre></div><p>相当于主线程执行完了，会通过回调函数去调用f2函数，这个没什么毛病。但是看下下面的例子：</p> <div class="language- extra-class"><pre><code>现在我们读取一个文件，fileReader就是一个异步请求
+
+// 这个异步请求就是通过回调函数的方式获取的
+
+var reader = new FileReader()
+var file = input.files[0]
+reader.readAsText(file, 'utf-8',function(err, data){
+    if(err){
+        console.log(err)
+    } else {
+        console.log(data)
+    }
+})
+</code></pre></div><p>现在看起来也很不错，但是如果文件上传出错了，我们还要在回调里面做判断，要是我们读取完这个文件接着要读取多个文件呢？是不是应该这么写：</p> <div class="language- extra-class"><pre><code>读取完文件1之后再接着读取文件2、3
+
+var reader = new FileReader()
+var file = input.files[0]
+reader.readAsText(file1, 'utf-8',function(err1, data1){
+    if(err1){
+        console.log(err1)
+    } else {
+        console.log(data1)
+    }
+    reader.readAsText(file2, 'utf-8',function(err2, data2){
+        if(err2){
+            console.log(err2)
+        } else {
+            console.log(data2)
+        }
+        reader.readAsText(file3, 'utf-8',function(err3, data3){
+            if(err3){
+                console.log(err3)
+            } else {
+                console.log(data3)
+            }
+        })
+    })
+})
+</code></pre></div><p>这么写可以实现需求，但是这个代码的可读性就比较差，看起来就不那么优雅，也就是我们常说的‘回调地狱’。那么怎么破解这种嵌套式的回调呢？ES6为我们提供了promise：</p> <h2 id="三、promise"><a href="#三、promise" class="header-anchor">#</a> 三、promise</h2> <p>首先我们从字面意思上理解一下什么是promise？promise可以翻译成承诺、保证，这个地方你可以理解为：</p> <p>女朋友让我干了一件事，虽然还没干完，但是我保证这件事会有一个结果给你，成功（fulfiled）或者失败（rejected），还有一个等待状态（pending）。</p> <div class="language- extra-class"><pre><code>还是先上例子
+
+let promise = new Promise((resolve, reject) =&gt; {
+    setTimeout(() =&gt; {
+        resolve(2000) // 成功以后这个resolve会把成功的结果捕捉到
+        // reject(2000) // 失败以后这个reject会把失败的结果捕捉到
+    }, 1000)
+    console.log(1111)
+})
+
+promise.then(res =&gt; {
+    console.log(res) // then里面第一个参数就能拿到捕捉到的成功结果
+}, err =&gt;{
+    console.log(res)// then里面第二个参数就能拿到捕捉到的失败结果
+})
+
+打印结果：
+
+1111
+2000（一秒以后）
+</code></pre></div><h3 id="_1、then链式操作"><a href="#_1、then链式操作" class="header-anchor">#</a> 1、then链式操作</h3> <p>Promise对象的then方法返回一个新的Promise对象，因此可以通过链式调用then方法。</p> <p>then方法接收两个函数作为参数，第一个参数是Promise执行成功时的回调，第二个参数是Promise执行失败时的回调，这个上面的例子说的很明白了，第二个参数捕捉的就是失败的回调。</p> <p>两个函数只会有一个被调用，这句话怎么理解呢？
+女朋友让你去做西红柿鸡蛋汤，你要么就去做，要么就不做，叫外卖，肯定没有第三种选择
+。</p> <p>函数的返回值将被用作创建then返回的Promise对象。这句话应该怎么理解呢？还是上例子：</p> <div class="language- extra-class"><pre><code>let promise = new Promise((resolve, reject) =&gt; {
+    setTimeout(() =&gt; {
+        resolve(2000)
+    }, 1000)
+    console.log(1111)
+})
+promise.then(res =&gt; {
+    console.log(res) // 这个地方会打印捕捉到的2000
+    return res + 1000 // 这个函数的返回值，返回的就是这个promise对象捕捉到的成功的值
+}).then(res =&gt; {
+    console.log(res) //这个地方打印的就是上一个promise对象return的值
+})
+
+所以打印顺序应该是：
+
+1111
+2000
+3000
+</code></pre></div><p>刚才我们看到了then接受两个参数，一个是成功的回调、一个是失败的回调，看起来好像也不是那么优雅，promise里除了then还提供了catch方法：</p> <h3 id="_2、catch捕捉操作"><a href="#_2、catch捕捉操作" class="header-anchor">#</a> 2、catch捕捉操作</h3> <p>这个catch就是专门捕捉错误的回调的，还是先看例子：</p> <div class="language- extra-class"><pre><code>let promise = new Promise((resolve, reject) =&gt; {
+    setTimeout(() =&gt; {
+        reject(2000) // 失败以后这个reject会把失败的结果捕捉到
+    }, 1000)
+    console.log(1111)
+})
+promise.catch(res =&gt; {
+    console.log(res) // catch里面就能拿到捕捉到的失败结果
+})
+
+打印结果：
+
+1111
+2000（一秒以后）
+</code></pre></div><p>除了then和catch之外，promise还有两个语法，all和race，我们也简单用一下：</p> <h3 id="_3、all"><a href="#_3、all" class="header-anchor">#</a> 3、all</h3> <p>现在我们有这么一个需求，一共有三个接口A、B、C，必须三个接口都成功以后，才能发起第四个请求，怎么实现呢？</p> <h5 id="链式调用"><a href="#链式调用" class="header-anchor">#</a> 链式调用</h5> <div class="language- extra-class"><pre><code>let getInfoA = new Promise((resolve, reject) =&gt; {
+    console.log('小A开始执行了')
+    resolve()
+}).then(res =&gt; {
+    let getInfoB = new Promise((resolve, reject) =&gt; {
+        console.log('小B开始执行了')
+        resolve()
+    }).then(res =&gt; {
+        let getInfoC = new Promise((resolve, reject) =&gt; {
+            console.log('小C开始执行了')
+            resolve()
+        }).then(res =&gt; {
+            console.log('全都执行完了！')
+        })
+    })
+})
+</code></pre></div><p>一层套一层的，好像不是那么优雅</p> <h5 id="all"><a href="#all" class="header-anchor">#</a> all</h5> <div class="language- extra-class"><pre><code>let getInfoA = new Promise((resolve, reject) =&gt; {
+    console.log('小A开始执行了')
+    resolve()
+})
+let getInfoB = new Promise((resolve, reject) =&gt; {
+    console.log('小B开始执行了')
+    resolve()
+})
+let getInfoC = new Promise((resolve, reject) =&gt; {
+    console.log('小C开始执行了')
+    resolve()
+})
+Promise.all([getInfoA, getInfoB, getInfoC]).then(res =&gt; {
+   console.log('全都执行完了！')
+})
+</code></pre></div><p>接收一个Promise对象组成的数组作为参数，当这个数组所有的Promise对象状态都变成resolved或者rejected的时候，它才会去调用then方法。非常完美，非常优雅。</p> <h3 id="_4、race"><a href="#_4、race" class="header-anchor">#</a> 4、race</h3> <p>现在又有一个需求，同样是接口A、B、C，只要有一个响应了，我就可以调接口D，那么怎么实现呢？</p> <h5 id="传统方式"><a href="#传统方式" class="header-anchor">#</a> 传统方式</h5> <div class="language- extra-class"><pre><code>let getInfoA = new Promise((resolve, reject) =&gt; {
+    console.log('小A开始执行了')
+    setTimeout((err =&gt; {
+        resolve('小A最快')
+    }),1000)
+}).then(res =&gt;{
+    console.log(res)
+})
+let getInfoB = new Promise((resolve, reject) =&gt; {
+    console.log('小B开始执行了')
+    setTimeout((err =&gt; {
+        resolve('小B最快')
+    }),1001)
+}).then(res =&gt;{
+    console.log(res)
+})
+let getInfoC = new Promise((resolve, reject) =&gt; {
+    console.log('小C开始执行了')
+    setTimeout((err =&gt; {
+        resolve('小C最快')
+    }),1002)
+}).then(res =&gt;{
+    console.log(res)
+})
+
+打印结果
+
+小A开始执行了
+小B开始执行了
+小C开始执行了
+小A最快
+</code></pre></div><p>这个方法得写三遍，好像也不是那么优雅，一起来看下race应该怎么写？</p> <h5 id="race"><a href="#race" class="header-anchor">#</a> race</h5> <div class="language- extra-class"><pre><code>let getInfoA = new Promise((resolve, reject) =&gt; {
+    console.log('小A开始执行了')
+    setTimeout((err =&gt; {
+        resolve('小A最快')
+    }),1000)
+})
+let getInfoB = new Promise((resolve, reject) =&gt; {
+    console.log('小B开始执行了')
+    setTimeout((err =&gt; {
+        resolve('小B最快')
+    }),1001)
+})
+let getInfoC = new Promise((resolve, reject) =&gt; {
+    console.log('小C开始执行了')
+    setTimeout((err =&gt; {
+        resolve('小C最快')
+    }),1002)
+})
+Promise.race([getInfoA, getInfoB, getInfoC]).then(res =&gt; {
+    console.log(res)
+})
+
+打印结果
+
+小A开始执行了
+小B开始执行了
+小C开始执行了
+小A最快
+</code></pre></div><p>与Promise.all相似的是，Promise.race都是以一个Promise对象组成的数组作为参数，不同的是，只要当数组中的其中一个Promsie状态变成resolved或者rejected时，就可以调用.then方法了。</p> <h5 id="promise是es6用来解决异步的一个方法-现在用的已经比较广泛了-像我们经常用的axios-他就是用promise封装的-用起来非常方便。"><a href="#promise是es6用来解决异步的一个方法-现在用的已经比较广泛了-像我们经常用的axios-他就是用promise封装的-用起来非常方便。" class="header-anchor">#</a> promise是ES6用来解决异步的一个方法，现在用的已经比较广泛了，像我们经常用的axios，他就是用promise封装的，用起来非常方便。</h5> <p>之前聊了异步编程的回调函数和promise，用promise解决异步编程，如果多个调用，就会看起来不那么舒服。</p> <p>es6除了提供了promise还为我们提供了更加强大的async和await，async、await是Generator函数的语法糖，如果想要完全掌握async、await的用法，必须要掌握Generator函数的使用。</p> <h2 id="四、generator-函数"><a href="#四、generator-函数" class="header-anchor">#</a> 四、Generator 函数</h2> <h3 id="_1、什么是-generator-函数"><a href="#_1、什么是-generator-函数" class="header-anchor">#</a> 1、什么是 Generator 函数？</h3> <p>来自阮一峰老师文档上的解释：Generator函数是协程在 ES6 的实现，最大特点就是可以交出函数的执行权（即暂停执行）。</p> <p>你可以这么理解，这个函数自己执行不了，得让别人帮忙执行，踢一脚（next()），走一步。</p> <h4 id="基本的用法"><a href="#基本的用法" class="header-anchor">#</a> 基本的用法：</h4> <div class="language- extra-class"><pre><code>function* doSomething() {
+    yield '吃饭'
+    return '睡觉'
+}
+
+let newDoSomething = doSomething() // 自己执行不了，需要指向一个状态机
+
+console.log(newDoSomething.next()) // {value: &quot;吃饭&quot;, done: false}
+console.log(newDoSomething.next()) // {value: &quot;睡觉&quot;, done: true}
+</code></pre></div><h5 id="从上面的例子可以看出来-generator-函数有四个特点"><a href="#从上面的例子可以看出来-generator-函数有四个特点" class="header-anchor">#</a> 从上面的例子可以看出来，Generator 函数有四个特点：</h5> <p>1、function后面有个小*，这个地方有两种写法，没啥太大区别；</p> <div class="language- extra-class"><pre><code>function* doSomething(){}
+function *doSomething(){}
+</code></pre></div><p>2、函数里面会有一个yield，把函数截成不同的状态；</p> <div class="language- extra-class"><pre><code>一个yield可以截成两个状态，也就需要两个next()触发；
+</code></pre></div><p>3、Generator函数自己不会执行，而是会返回一个遍历器对象；</p> <p>4、遍历器对象会通过.next()方法依次调用各个状态。</p> <h4 id="消息传递"><a href="#消息传递" class="header-anchor">#</a> 消息传递</h4> <p>Generator函数除了能控制函数分状态的执行，还有一个非常重要的作用就是消息传递，还是上例子：</p> <div class="language- extra-class"><pre><code>function *doSomething() {
+    let x = yield 'hhh'
+    console.log(x)
+    return (x * 2)
+}
+
+let newDoSomething = doSomething()
+
+console.log(newDoSomething.next(1))  
+console.log(newDoSomething.next(2))  
+
+
+打印结果：
+
+{value: &quot;hhh&quot;, done: false}
+2
+{value: 4, done: true}
+</code></pre></div><p>具体分析一下为什么会打印这个：   （<em>重点</em>）</p> <div class="language- extra-class"><pre><code>//{value: &quot;hhh&quot;, done: false}
+第一个next()是Generator函数的启动器
+这个时候打印的是yield后面的值
+重点的一句，yield后面的值并不会赋值给x
+
+//2
+暂停执行的时候，yield表达式处可以接收下一个启动它的next(...)传进来的值
+你可以理解为：
+这个时候第二个next传入的参数会把第一个yield的值替换掉
+
+ //{value: 4, done: true}
+这个时候，x被赋值2，所以打印2*2
+</code></pre></div><h5 id="注意几个问题"><a href="#注意几个问题" class="header-anchor">#</a> 注意几个问题：</h5> <h6 id="第一个next-是用来启动generator函数的-传值会被忽略-没用"><a href="#第一个next-是用来启动generator函数的-传值会被忽略-没用" class="header-anchor">#</a> 第一个next()是用来启动Generator函数的，传值会被忽略，没用</h6> <h6 id="yield的用法和return比较像-你可以当做return来用-如果yield后没值-return-undefined"><a href="#yield的用法和return比较像-你可以当做return来用-如果yield后没值-return-undefined" class="header-anchor">#</a> yield的用法和return比较像，你可以当做return来用，如果yield后没值，return undefined</h6> <h6 id="最后一个next-函数-得到的是函数return的值-如果没有-也是undefined"><a href="#最后一个next-函数-得到的是函数return的值-如果没有-也是undefined" class="header-anchor">#</a> 最后一个next()函数，得到的是函数return的值，如果没有，也是undefined</h6> <h5 id="彻底理解了上面的概念-再来看下下面的栗子"><a href="#彻底理解了上面的概念-再来看下下面的栗子" class="header-anchor">#</a> 彻底理解了上面的概念，再来看下下面的栗子：</h5> <div class="language- extra-class"><pre><code>function *doSomething() {
+    let x = yield 'hhh'
+    let y = yield (x + 3)
+    let z = yield (y * 3)
+    return (x * 2)
+}
+
+let newDoSomething = doSomething()
+
+console.log(newDoSomething.next(1))  // {value: &quot;hhh&quot;, done: false}
+console.log(newDoSomething.next(2))  // {value: 5, done: false}
+console.log(newDoSomething.next(100)) // {value: 300, done: false}
+console.log(newDoSomething.next(1000)) // {value: 4, done: true}
+</code></pre></div><p>还是用上面的思路分析一下：</p> <div class="language- extra-class"><pre><code>第一个next(1)，传进去的值没用，打印的是yield后的值
+第二个next(2)，这个时候的x已经被赋值为2,所以打印2+3
+第三个next(100)，这个时候的y已经被赋值为100,所以打印100*3
+第四个next(1000)，这个时候y已经被赋值为1000,,但是打印的是x*2，所以打印的4 
+</code></pre></div><h5 id="再来看个特殊的情况-特殊的才是容易掉坑的"><a href="#再来看个特殊的情况-特殊的才是容易掉坑的" class="header-anchor">#</a> 再来看个特殊的情况：（特殊的才是容易掉坑的）</h5> <div class="language- extra-class"><pre><code>function *doSomething() {
+    let x = yield 'hhh'
+    console.log(x)
+    let y = yield (x + 3)
+    console.log(y)
+    let z = yield (y * 3)
+    return (x * 2)
+}
+
+let newDoSomething = doSomething()
+
+console.log(newDoSomething.next(1))
+console.log(newDoSomething.next(2))
+console.log(newDoSomething.next())
+console.log(newDoSomething.next())
+</code></pre></div><p>看下打印结果：</p> <div class="language- extra-class"><pre><code>{value: &quot;hhh&quot;, done: false}
+2
+{value: 5, done: false}
+undefined
+{value: NaN, done: false}
+{value: 4, done: true}
+</code></pre></div><p>分析下为什么打印undefined？</p> <div class="language- extra-class"><pre><code>1、第一个next(1)传进去的1，没有起任何意义，打印的{value: &quot;hhh&quot;, done: false}；
+2、第二个next(2)传进去的2，所以x会打印2，第二个next(2)打印2+3；
+3、第三个next()传进去的是空，那么y打印的就是未定义，undefined*3那肯定就是NaN；
+4、第四个next()传进去的是空，但是return的是x，刚才说了x是2，那打印的是2*2
+</code></pre></div><h2 id="五、async、await"><a href="#五、async、await" class="header-anchor">#</a> 五、async、await</h2> <h3 id="_1、什么是async、await"><a href="#_1、什么是async、await" class="header-anchor">#</a> 1、什么是async、await？</h3> <p>async、await是Generator函数的语法糖，原理是通过Generator函数加自动执行器来实现的，这就使得async、await跟普通函数一样了，不用再一直next执行了。</p> <p>他吸收了Generator函数的优点，可以通过await来把函数分状态执行，但是又不用一直next，可以自动执行。</p> <p>还是上例子：</p> <h5 id="栗子1"><a href="#栗子1" class="header-anchor">#</a> 栗子1</h5> <div class="language- extra-class"><pre><code>function f() {
+    return new Promise(resolve =&gt;{
+        resolve('hhh')
+    })
+}
+async function doSomething1(){
+    let x = await f()
+}
+
+doSomething1()
+
+打印结果：
+
+hhh
+</code></pre></div><p>看了上面的例子，可以看出async有三个特点：</p> <div class="language- extra-class"><pre><code>1、函数前面会加一个async修饰符，来证明这个函数是一个异步函数；
+
+2、await 是个运算符，用于组成表达式，它会阻塞后面的代码
+
+3、await 如果等到的是 Promise 对象，则得到其 resolve值。
+</code></pre></div><h5 id="栗子2"><a href="#栗子2" class="header-anchor">#</a> 栗子2</h5> <div class="language- extra-class"><pre><code>async function doSomething1(){
+    let x = await 'hhh'
+    return x
+}
+
+console.log(doSomething1())
+
+doSomething1().then(res =&gt; {
+    console.log(res)
+})
+
+打印结果：
+
+Promise {&lt;pending&gt;}
+hhh
+</code></pre></div><p>分析一下上面的栗子可以得到这两个特点：</p> <div class="language- extra-class"><pre><code>1、async返回的是一个promise对象，函数内部 return 返回的值，会成为 then 方法回调函数的参数；
+
+2、await如果等到的不是promise对象，就得到一个表达式的运算结果。
+</code></pre></div><h3 id="_2、async、await项目中的使用"><a href="#_2、async、await项目中的使用" class="header-anchor">#</a> 2、async、await项目中的使用</h3> <p>现在有一个封装好的，获取数据的方法，我们分别用promise、Generator、async来实现发请求，做一下比较：</p> <div class="language- extra-class"><pre><code>function getList() {
+    return new Promise((resolve, reject) =&gt;{
+        $axios('/pt/getList').then(res =&gt; {
+            resolve(res)
+        }, err =&gt; {
+            reject(err)
+        })
+    })
+}
+</code></pre></div><h4 id="promise"><a href="#promise" class="header-anchor">#</a> promise</h4> <div class="language- extra-class"><pre><code>function initTable() {
+    getList().then(res =&gt; {
+        console.log(res)
+    }).catch(err =&gt; {
+        this.$message(err) // element的语法
+    })
+}
+
+然后直接调用就可以
+这么做看起来非常的简洁，但是如果多个请求调用
+就会是.then,.then看起来非常不舒服
+</code></pre></div><h4 id="generator函数"><a href="#generator函数" class="header-anchor">#</a> Generator函数</h4> <div class="language- extra-class"><pre><code>function *initTable(args) {
+    const getList = yield getlist(args)
+    return getList
+}
+
+function getList() {
+    const g = initTable(this.searchParams)
+    const gg = g.next().value
+    gg.then(res =&gt;{
+        this.total = res.data.count
+        if (res.data.list) {
+          this.tableList = res.data.list
+          this.tableList.forEach(e =&gt; {
+            e.receiveAmt = format(e.receiveAmt)
+          })
+        } else {
+          this.tableList = []
+        }
+    })
+}
+
+这个看起来就比较伤，写起来非常麻烦
+</code></pre></div><h4 id="async-await"><a href="#async-await" class="header-anchor">#</a> async await</h4> <div class="language- extra-class"><pre><code>async initTable() { // table列表查
+  const getData = await getList(this.searchParams)
+  return getData
+},
+
+getList() {
+  this.initTable().then(res =&gt;{
+    this.tableList = res.data.list
+  })
+}
+
+这样写好像也很简单，而且非常方便
+
+主要是如果调用多个接口，可以直接多个await
+</code></pre></div><p>以上是我个人对promise、async、await的一点见解，有不对的欢迎各位大佬留言或者加我微信交流。</p> <p>个人的微信公众号：小Jerry有话说，平时会发一些技术文章和读书笔记，欢迎交流。</p> <p>后面会持续更新一些js基础的文章，长得好看的哥哥姐姐们可以点个关注。</p></div></div>  <div class="page-edit"><!----> <!----> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">2022/03/09, 14:17:08</span></div></div> <div class="page-nav-wapper"><div class="page-nav-centre-wrap"><a href="/pages/831830/" class="page-nav-centre page-nav-centre-prev"><div class="tooltip">从零开源一个基于vue的组件到npm</div></a> <a href="/pages/d82546/" class="page-nav-centre page-nav-centre-next"><div class="tooltip">类似商品筛选的插件</div></a></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/pages/831830/" class="prev">从零开源一个基于vue的组件到npm</a></span> <span class="next"><a href="/pages/d82546/">类似商品筛选的插件</a>→
+      </span></p></div></div></div> <div class="article-list"><div class="article-title"><a href="/archives/" class="iconfont icon-bi">最近更新</a></div> <div class="article-wrapper"><dl><dd>01</dd> <dt><a href="/pages/f79f4b/"><div>
+            flutter开发过程中遇到的坑
+            <!----></div></a> <span class="date">03-09</span></dt></dl><dl><dd>02</dd> <dt><a href="/pages/adc5bc/"><div>
+            我们的父辈观后感
+            <!----></div></a> <span class="date">03-04</span></dt></dl><dl><dd>03</dd> <dt><a href="/pages/90e4ae/"><div>
+            记在清华学姐事件后
+            <!----></div></a> <span class="date">03-04</span></dt></dl> <dl><dd></dd> <dt><a href="/archives/" class="more">更多文章&gt;</a></dt></dl></div></div></main></div> <div class="footer"><div class="icons"><a href="18500892223@163.com" title="发邮件" target="_blank" class="iconfont icon-youjian"></a><a href="https://github.com/NorwegianWood1208" title="GitHub" target="_blank" class="iconfont icon-github"></a><a href="" title="听音乐" target="_blank" class="iconfont icon-erji"></a></div> 
+  Theme by
+  <a href="https://github.com/xugaoyi/vuepress-theme-vdoing" target="_blank" title="本站主题">Vdoing</a> 
+    | Copyright © 2022-2022
+    <span>Jerry</span></div> <div class="buttons"><div title="返回顶部" class="button blur go-to-top iconfont icon-fanhuidingbu" style="display:none;"></div> <div title="去评论" class="button blur go-to-comment iconfont icon-pinglun" style="display:none;"></div> <div title="主题模式" class="button blur theme-mode-but iconfont icon-zhuti"><ul class="select-box" style="display:none;"><li class="iconfont icon-zidong">
+          跟随系统
+        </li><li class="iconfont icon-rijianmoshi">
+          浅色模式
+        </li><li class="iconfont icon-yejianmoshi">
+          深色模式
+        </li><li class="iconfont icon-yuedu">
+          阅读模式
+        </li></ul></div></div> <div class="body-bg" style="background:url() center center / cover no-repeat;opacity:0.5;"></div> <!----> <!----></div><div class="global-ui"><APlayer audio="" fixed="true" mini="true" autoplay="autoplay" theme="#b7daff" loop="loop" order="list" preload="auto" volume="0.15" mutex="true" lrc-type="3" list-max-height="250" storage-name="vuepress-plugin-meting" id="aplayer-fixed"></APlayer><div></div></div></div>
+    <script src="/assets/js/app.833fe341.js" defer></script><script src="/assets/js/2.0bc0feeb.js" defer></script><script src="/assets/js/62.773a188c.js" defer></script>
+  </body>
+</html>

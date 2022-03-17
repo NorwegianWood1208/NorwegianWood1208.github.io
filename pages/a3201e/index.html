@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>动态路由前端控制还是后端控制 | Jerry&#39;s blog</title>
+    <meta name="generator" content="VuePress 1.9.5">
+    <link rel="icon" href="/img/j_by_climei.png">
+    <meta name="description" content="个人博客,分享自己对于这个世界一些不客观的观点。">
+    <meta name="keywords" content="前端博客,个人技术博客,前端,前端开发,前端框架,web前端,前端面试题,技术文档,学习,面试,JavaScript,js,ES6,TypeScript,vue,python,css3,html5,Node,git,github,markdown">
+    <meta name="theme-color" content="#11a8cd">
+    
+    <link rel="preload" href="/assets/css/0.styles.bf9de544.css" as="style"><link rel="preload" href="/assets/js/app.833fe341.js" as="script"><link rel="preload" href="/assets/js/2.0bc0feeb.js" as="script"><link rel="preload" href="/assets/js/70.fcfc76ae.js" as="script"><link rel="prefetch" href="/assets/js/10.e63e1ad5.js"><link rel="prefetch" href="/assets/js/11.4bf61c9d.js"><link rel="prefetch" href="/assets/js/12.83728bc0.js"><link rel="prefetch" href="/assets/js/13.6a2f4699.js"><link rel="prefetch" href="/assets/js/14.eeb8e594.js"><link rel="prefetch" href="/assets/js/15.38fb8c74.js"><link rel="prefetch" href="/assets/js/16.c7d7c8be.js"><link rel="prefetch" href="/assets/js/17.39f1358c.js"><link rel="prefetch" href="/assets/js/18.8df6179b.js"><link rel="prefetch" href="/assets/js/19.2c717924.js"><link rel="prefetch" href="/assets/js/20.5bb44cfc.js"><link rel="prefetch" href="/assets/js/21.7d801f6b.js"><link rel="prefetch" href="/assets/js/22.49d97dc1.js"><link rel="prefetch" href="/assets/js/23.7cb1676a.js"><link rel="prefetch" href="/assets/js/24.7826f9de.js"><link rel="prefetch" href="/assets/js/25.331591c5.js"><link rel="prefetch" href="/assets/js/26.04a034dd.js"><link rel="prefetch" href="/assets/js/27.2a084421.js"><link rel="prefetch" href="/assets/js/28.acf290b3.js"><link rel="prefetch" href="/assets/js/29.6c3c2870.js"><link rel="prefetch" href="/assets/js/3.7c9b3e6a.js"><link rel="prefetch" href="/assets/js/30.4605178f.js"><link rel="prefetch" href="/assets/js/31.e54e3d1a.js"><link rel="prefetch" href="/assets/js/32.1a9d85b8.js"><link rel="prefetch" href="/assets/js/33.ab45d168.js"><link rel="prefetch" href="/assets/js/34.dad7b3e2.js"><link rel="prefetch" href="/assets/js/35.8af270ac.js"><link rel="prefetch" href="/assets/js/36.7421c201.js"><link rel="prefetch" href="/assets/js/37.0a0e7f93.js"><link rel="prefetch" href="/assets/js/38.7e9ebf30.js"><link rel="prefetch" href="/assets/js/39.f3896093.js"><link rel="prefetch" href="/assets/js/4.64631ee0.js"><link rel="prefetch" href="/assets/js/40.3cda4839.js"><link rel="prefetch" href="/assets/js/41.e2a64e62.js"><link rel="prefetch" href="/assets/js/42.2420bfc8.js"><link rel="prefetch" href="/assets/js/43.0a154c85.js"><link rel="prefetch" href="/assets/js/44.d29c7c56.js"><link rel="prefetch" href="/assets/js/45.3c6d3054.js"><link rel="prefetch" href="/assets/js/46.57938edd.js"><link rel="prefetch" href="/assets/js/47.cf4eec93.js"><link rel="prefetch" href="/assets/js/48.c49722a5.js"><link rel="prefetch" href="/assets/js/49.e0554b6b.js"><link rel="prefetch" href="/assets/js/5.94358016.js"><link rel="prefetch" href="/assets/js/50.22427026.js"><link rel="prefetch" href="/assets/js/51.da445b69.js"><link rel="prefetch" href="/assets/js/52.9fb23354.js"><link rel="prefetch" href="/assets/js/53.bddd71bf.js"><link rel="prefetch" href="/assets/js/54.d96f08aa.js"><link rel="prefetch" href="/assets/js/55.3cd93769.js"><link rel="prefetch" href="/assets/js/56.470c91e2.js"><link rel="prefetch" href="/assets/js/57.669d8f7c.js"><link rel="prefetch" href="/assets/js/58.0258d540.js"><link rel="prefetch" href="/assets/js/59.f996d58c.js"><link rel="prefetch" href="/assets/js/6.6c8dcd68.js"><link rel="prefetch" href="/assets/js/60.7d4a5cb2.js"><link rel="prefetch" href="/assets/js/61.9a5050e0.js"><link rel="prefetch" href="/assets/js/62.773a188c.js"><link rel="prefetch" href="/assets/js/63.79883564.js"><link rel="prefetch" href="/assets/js/64.14ed9064.js"><link rel="prefetch" href="/assets/js/65.17bd66c3.js"><link rel="prefetch" href="/assets/js/66.daeea4e3.js"><link rel="prefetch" href="/assets/js/67.43c4d763.js"><link rel="prefetch" href="/assets/js/68.e837b336.js"><link rel="prefetch" href="/assets/js/69.bfa2c868.js"><link rel="prefetch" href="/assets/js/7.ca1c7a37.js"><link rel="prefetch" href="/assets/js/71.091c120b.js"><link rel="prefetch" href="/assets/js/72.512f6e5a.js"><link rel="prefetch" href="/assets/js/73.4a796d0f.js"><link rel="prefetch" href="/assets/js/74.ac08f769.js"><link rel="prefetch" href="/assets/js/75.955754fa.js"><link rel="prefetch" href="/assets/js/76.09e93953.js"><link rel="prefetch" href="/assets/js/77.741fe89c.js"><link rel="prefetch" href="/assets/js/78.9aba5024.js"><link rel="prefetch" href="/assets/js/79.4423e146.js"><link rel="prefetch" href="/assets/js/8.c6a036e6.js"><link rel="prefetch" href="/assets/js/80.b165ad67.js"><link rel="prefetch" href="/assets/js/81.b55fb697.js"><link rel="prefetch" href="/assets/js/82.9d080867.js"><link rel="prefetch" href="/assets/js/83.d2c50764.js"><link rel="prefetch" href="/assets/js/84.244a3973.js"><link rel="prefetch" href="/assets/js/85.4c3be661.js"><link rel="prefetch" href="/assets/js/86.456440c2.js"><link rel="prefetch" href="/assets/js/87.4435302a.js"><link rel="prefetch" href="/assets/js/88.5742f5e2.js"><link rel="prefetch" href="/assets/js/89.98dad43c.js"><link rel="prefetch" href="/assets/js/9.815d0cbf.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.bf9de544.css">
+  </head>
+  <body class="theme-mode-light">
+    <div id="app" data-server-rendered="true"><div class="theme-container sidebar-open have-rightmenu have-body-img"><header class="navbar blur"><div title="目录" class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/img/j_by_climei.png" alt="Jerry's blog" class="logo"> <span class="site-name can-hide">Jerry's blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="读书" class="dropdown-title"><a href="/read/" class="link-title">读书</a> <span class="title" style="display:none;">读书</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/read/fdba22/" class="nav-link">2022年2月</a></li><li class="dropdown-item"><!----> <a href="/read/a61298/" class="nav-link">《沧浪之水》</a></li><li class="dropdown-item"><!----> <a href="/pages/bd7714/" class="nav-link">《置身事内》</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="生活" class="dropdown-title"><a href="/life/" class="link-title">生活</a> <span class="title" style="display:none;">生活</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/pages/bb5866/" class="nav-link">转载禅与摩托车维修</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="技术" class="dropdown-title"><a href="/technology/" class="link-title">技术</a> <span class="title" style="display:none;">技术</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/pages/0c8a93/" class="nav-link">快速配置前端的Macbook</a></li><li class="dropdown-item"><!----> <a href="/pages/811b36/" class="nav-link">vite核心原理及在vue2项目中的使用</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="更多" class="dropdown-title"><a href="/more/" class="link-title">更多</a> <span class="title" style="display:none;">更多</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>足球</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/pages/4c17d5/" class="nav-link">《记在2021年法国队淘汰后》</a></li><li class="dropdown-subitem"><a href="/pages/96be87/" class="nav-link">我们为什么喜欢足球</a></li></ul></li></ul></div></div><div class="nav-item"><a href="/about/" class="nav-link">关于</a></div><div class="nav-item"><a href="/pages/beb6c0bd8a66cea6/" class="nav-link">收藏</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="索引" class="dropdown-title"><a href="/archives/" class="link-title">索引</a> <span class="title" style="display:none;">索引</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/" class="nav-link">分类</a></li><li class="dropdown-item"><!----> <a href="/tags/" class="nav-link">标签</a></li><li class="dropdown-item"><!----> <a href="/archives/" class="nav-link">归档</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar-hover-trigger"></div> <aside class="sidebar" style="display:none;"><div class="blogger"><img src="https://img1.baidu.com/it/u=3110618223,3718234292&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPG?w=500&amp;h=694"> <div class="blogger-info"><h3>Jerry</h3> <span>Kop、摇滚迷、web前端</span></div></div> <nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="读书" class="dropdown-title"><a href="/read/" class="link-title">读书</a> <span class="title" style="display:none;">读书</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/read/fdba22/" class="nav-link">2022年2月</a></li><li class="dropdown-item"><!----> <a href="/read/a61298/" class="nav-link">《沧浪之水》</a></li><li class="dropdown-item"><!----> <a href="/pages/bd7714/" class="nav-link">《置身事内》</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="生活" class="dropdown-title"><a href="/life/" class="link-title">生活</a> <span class="title" style="display:none;">生活</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/pages/bb5866/" class="nav-link">转载禅与摩托车维修</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="技术" class="dropdown-title"><a href="/technology/" class="link-title">技术</a> <span class="title" style="display:none;">技术</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/pages/0c8a93/" class="nav-link">快速配置前端的Macbook</a></li><li class="dropdown-item"><!----> <a href="/pages/811b36/" class="nav-link">vite核心原理及在vue2项目中的使用</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="更多" class="dropdown-title"><a href="/more/" class="link-title">更多</a> <span class="title" style="display:none;">更多</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>足球</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/pages/4c17d5/" class="nav-link">《记在2021年法国队淘汰后》</a></li><li class="dropdown-subitem"><a href="/pages/96be87/" class="nav-link">我们为什么喜欢足球</a></li></ul></li></ul></div></div><div class="nav-item"><a href="/about/" class="nav-link">关于</a></div><div class="nav-item"><a href="/pages/beb6c0bd8a66cea6/" class="nav-link">收藏</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="索引" class="dropdown-title"><a href="/archives/" class="link-title">索引</a> <span class="title" style="display:none;">索引</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/" class="nav-link">分类</a></li><li class="dropdown-item"><!----> <a href="/tags/" class="nav-link">标签</a></li><li class="dropdown-item"><!----> <a href="/archives/" class="nav-link">归档</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>全栈进阶</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>前端技术</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/pages/a35111/" class="sidebar-link">pdfjs实战</a></li><li><a href="/pages/2f782e/" class="sidebar-link">快速配置前端开发的Macbook</a></li><li><a href="/pages/c85756/" class="sidebar-link">vite在vue2项目中的使用</a></li><li><a href="/pages/bcc749/" class="sidebar-link">基于vue3+typescript的后台管理系统</a></li><li><a href="/pages/bd0229/" class="sidebar-link">一小时上手webpack（基础使用指南含demo）</a></li><li><a href="/pages/06b0e3/" class="sidebar-link">nodejs搭建本地服务器来访问本地文件</a></li><li><a href="/pages/a891b9/" class="sidebar-link">前端模块化发展历史</a></li><li><a href="/pages/1fff49/" class="sidebar-link">nodejs实现一个基础的后台服务</a></li><li><a href="/pages/831830/" class="sidebar-link">从零开源一个基于vue的组件到npm</a></li><li><a href="/pages/64c470/" class="sidebar-link">一节课彻底弄懂同步异步</a></li><li><a href="/pages/d82546/" class="sidebar-link">类似商品筛选的插件</a></li><li><a href="/pages/1e2fa8/" class="sidebar-link">elementTable组件固定表头且高度自适应</a></li><li><a href="/pages/db2556/" class="sidebar-link">js高阶函数和单例设计模式</a></li><li><a href="/pages/33f02d/" class="sidebar-link">js 变量提升</a></li><li><a href="/pages/ac4ec8/" class="sidebar-link">nodeJs获取常用的4种post请求参数</a></li><li><a href="/pages/eb3d07/" class="sidebar-link">买一个服务器搭建node服务</a></li><li><a href="/pages/f8599a/" class="sidebar-link">vue性能优化方案，解决首页加载慢</a></li><li><a href="/pages/a3201e/" aria-current="page" class="active sidebar-link">动态路由前端控制还是后端控制</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/pages/a3201e/#核心代码一共四个文件-基本都会加上源码和解释" class="sidebar-link">核心代码一共四个文件，基本都会加上源码和解释：</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/pages/a3201e/#_3、src-permission-js-新建一个路由守卫函数-可以在main-js-也可以抽离出来一个文件" class="sidebar-link">3、src/permission.js（新建一个路由守卫函数，可以在main.js，也可以抽离出来一个文件）</a></li><li class="sidebar-sub-header"><a href="/pages/a3201e/#_4、侧边栏的可以从vuex里面取数据来进行渲染" class="sidebar-link">4、侧边栏的可以从vuex里面取数据来进行渲染</a></li><li class="sidebar-sub-header"><a href="/pages/a3201e/#_1、store-permission-js-在vuex里面发送请求获取数据" class="sidebar-link">1、store/permission.js，在vuex里面发送请求获取数据</a></li><li class="sidebar-sub-header"><a href="/pages/a3201e/#_2、整理一份数据结构-存到表里" class="sidebar-link">2、整理一份数据结构，存到表里</a></li><li class="sidebar-sub-header"><a href="/pages/a3201e/#_3、写一个转化方法-把获取到的数据转换成router结构" class="sidebar-link">3、写一个转化方法，把获取到的数据转换成router结构</a></li></ul></li><li class="sidebar-sub-header"><a href="/pages/a3201e/#总结" class="sidebar-link">总结</a></li></ul></li><li><a href="/pages/b478f3/" class="sidebar-link">一节课彻底弄懂promise、async、await（一）</a></li><li><a href="/pages/633ae0/" class="sidebar-link">你不一定了解的js数据类型（二）</a></li><li><a href="/pages/0016fb/" class="sidebar-link">你不一定了解的js数据类型（一）</a></li><li><a href="/pages/96fde7/" class="sidebar-link">一节课彻底弄懂promise、async、await（三）完结篇</a></li><li><a href="/pages/cb71ab/" class="sidebar-link">一节课彻底弄懂promise、async、await（二）</a></li><li><a href="/pages/803139/" class="sidebar-link">js闭包</a></li></ul></section></li></ul> </aside> <div><main class="page"><div class="theme-vdoing-wrapper "><div class="articleInfo-wrap" data-v-0c557b5e><div class="articleInfo" data-v-0c557b5e><ul class="breadcrumbs" data-v-0c557b5e><li data-v-0c557b5e><a href="/" title="首页" class="iconfont icon-home router-link-active" data-v-0c557b5e></a></li> <li data-v-0c557b5e><a href="/technology/#技术" data-v-0c557b5e>技术</a></li><li data-v-0c557b5e><a href="/technology/#前端技术" data-v-0c557b5e>前端技术</a></li></ul> <div class="info" data-v-0c557b5e><div title="作者" class="author iconfont icon-touxiang" data-v-0c557b5e><a href="https://github.com/NorwegianWood1208" target="_blank" title="作者" class="beLink" data-v-0c557b5e>Jerry</a></div> <div title="创建时间" class="date iconfont icon-riqi" data-v-0c557b5e><a href="javascript:;" data-v-0c557b5e>2022-03-09</a></div> <!----></div></div></div> <!----> <div class="content-wrapper"><div class="right-menu-wrapper"><div class="right-menu-margin"><div class="right-menu-content"></div></div></div> <h1><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAABGpJREFUSA3tVVtoXFUU3fvOI53UlmCaKIFmwEhsE7QK0ipFEdHEKpXaZGrp15SINsXUWvBDpBgQRKi0+KKoFeJHfZA+ED9KKoIU2gYD9UejTW4rVIzm0VSTziPzuNu1z507dibTTjL4U/DAzLn3nL3X2o91ziX6f9wMFdh6Jvbm9nNSV0msViVO6tN1Rm7NMu2OpeJ9lWBUTDxrJbYTS0hInuwciu9eLHlFxCLCZEk3MegsJmZ5K/JD6t7FkFdEvGUo1g7qJoG3MHImqRIn8/nzY1K9UPKKiJmtnUqHVE3Gbuay6vJE/N2FEmuxFjW2nUuE0yQXRRxLiTUAzs36zhZvOXJPdX850EVnnLZkB8prodQoM5JGj7Xk2mvC7JB8tG04Ef5PiXtG0UtxupRQSfTnBoCy554x18yJHI6I+G5Eru4LHmPJZEQsrvPUbMiA8G/WgMK7w7I+ez7++o2ANfbrjvaOl1tFMs+htG3IrZH9/hDX1Pr8Tc0UvH8tcX29KzAgIGcEkINyW5BF9x891hw6VYqgJHEk0huccS7vh3C6gTiODL+26huuBtbct8eZnqLML8PkxGYpuPZBqtqwkSjgc4mB5gbgig5i+y0UDK35LMxXisn9xQtK+nd26gTIHsHe/oblK/b29fUmN/8Y+9jAQrnBp56m1LcDlDp9irKTExSKduXJVWSqdBMA08pEJnEIOB3FPPMybu/oeV8zFeYN3xx576Q6RH+VmplE4ncQV5v+5rzSoyOU7PuEAg8g803PwBJ0CExno/jcMbN8tONYeOmHiuUNryvm3fRUy4tMPVLdAGkUhNWuggGrJcXPv+ouCjz0MKUHz1J2/E8IC9nqTabcxgaBYM0hPhD5Y65FsbxRQKxCQrDjDctW7PUM3HuZunFyifSAqEfuzCp48Il24luWUWZoyJCaPR82jE0+kFA643wRFVni4RYSq3ohJO2pZ7B5dO4xkDWbEpossJPLSrPjYID8rS2UHTlvyNxqIGsg674XJJ7vnh5L7PNwC4hh2sjCI96mzszOTpxLF0T7l88Yz7lAuK6OnL8gXLOnTvpzSb22YG8W7us3jSebFHeeqnXRG1vt+MoUM84LQIBmMsCTAcOauTh0T0l0neQK7m2bLMt2mGxU3HYssS0J2cdv5wljlPsrIuZLAG/2DOZIXgCYT8uMGZN+e2kSirfxZOPCsC0f24nTZzspnVn9VePS1Z5vubmAGGXG8ZFno9Hel0yfA5ZPhF7Dh972BQJ2qCpgH67lmWtBYbvk6sz02wjky2vXyz0XErP/kFB619js1BtwfOV4OPRqOQBjy3Qbk18vigUPPSD5ceHnwck7W9bhAqZdd7SuG7w4/P2F/GaJh8c7e9qgow+Q7cGBo+98WsLkuktFqiZabtXuQTu/Y5ETbR0v7tNSFnvrmu6pjdoan2KjMu8q/Hmj1EfCO2ZGfEIbIXKUlw8qaX9/b2oeSJmFksSeT/Fn0V3nSypChh4Gjh74ybO9aeZ/AN2dwciu2/MhAAAAAElFTkSuQmCC">动态路由前端控制还是后端控制<!----></h1>  <div class="theme-vdoing-content content__default"><p>关于后台管理系统的路由，想花一点时间，彻底的整理一份实现动态路由的点点滴滴。</p> <p>首先声明，这篇文章是基于花裤衩大神的《手摸手，带你用vue撸后台》，在他项目的基础上，帮助想要实现动态路由的小伙伴，来写的一篇使用笔记。</p> <blockquote><p>https://segmentfault.com/a/1190000009506097#item-3</p></blockquote> <h3 id="为什么要实现动态路由"><a href="#为什么要实现动态路由" class="header-anchor">#</a> 为什么要实现动态路由?</h3> <p>我们在开发后台管理系统的过程中，会有不同的人来操作系统，有admin（管理员）、superAdmin(超管)，还会有各种运营人员、财务人员。为了区别这些人员，我们会给不同的人分配不一样的角色，从而来展示不同的菜单，这个就必须要通过动态路由来实现。</p> <h3 id="主流的实现方式"><a href="#主流的实现方式" class="header-anchor">#</a> 主流的实现方式：</h3> <p>简单聊一下两种方式的优势，毕竟如果你从来没做过，说再多也看不明白，还是得看代码</p> <h4 id="前端控制"><a href="#前端控制" class="header-anchor">#</a> 前端控制</h4> <div class="language- extra-class"><pre><code>1、不用后端帮助，路由表维护在前端
+2、逻辑相对比较简单，比较容易上手
+</code></pre></div><h4 id="_2、后端控制"><a href="#_2、后端控制" class="header-anchor">#</a> 2、后端控制</h4> <div class="language- extra-class"><pre><code>1、相对更安全一点
+2、路由表维护在数据库
+</code></pre></div><h1 id="一、前端控制"><a href="#一、前端控制" class="header-anchor">#</a> 一、前端控制</h1> <p>花裤衩大神的方案是前端控制，他的核心是通过路由的meta属性，通过role来控制路由的加载。具体的实现方案：</p> <div class="language- extra-class"><pre><code>1、根据登录用户的账号，返回前端用户的角色
+
+2、前端根据用户的角色，跟路由表的meta.role进行匹配
+
+3、讲匹配到的路由形成可访问路由
+</code></pre></div><p>具体的代码逻辑：</p> <div class="language- extra-class"><pre><code>1、把静态路由和动态路由分别写在router.js
+
+2、在vuex维护一个state，通过配角色来控制菜单显不显示
+
+3、新建一个路由守卫函数，可以在main.js，也可以抽离出来一个文件
+
+4、侧边栏的可以从vuex里面取数据来进行渲染
+</code></pre></div><h2 id="核心代码一共四个文件-基本都会加上源码和解释"><a href="#核心代码一共四个文件-基本都会加上源码和解释" class="header-anchor">#</a> 核心代码一共四个文件，基本都会加上源码和解释：</h2> <h4 id="_1、在router-js文件-把静态路由和动态路由分别写在router-js"><a href="#_1、在router-js文件-把静态路由和动态路由分别写在router-js" class="header-anchor">#</a> 1、在router.js文件（把静态路由和动态路由分别写在router.js）</h4> <div class="language- extra-class"><pre><code>import Vue from 'vue'
+import Router from 'vue-router'
+
+Vue.use(Router)
+
+import Layout from '@/layout'
+
+// constantRoutes  静态路由，主要是登录页、404页等不需要动态的路由
+
+export const constantRoutes = [
+  {
+    path: '/redirect',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '/redirect/:path*',
+        component: () =&gt; import('@/views/redirect/index')
+      }
+    ]
+  },
+  {
+    path: '/login',
+    component: () =&gt; import('@/views/login/index'),
+    hidden: true
+  },
+  {
+    path: '/404',
+    component: () =&gt; import('@/views/error-page/404'),
+    hidden: true
+  },
+  {
+    path: '/401',
+    component: () =&gt; import('@/views/error-page/401'),
+    hidden: true
+  }
+] 
+
+// asyncRoutes 动态路由
+export const asyncRoutes = [
+  {
+    path: '/permission',
+    component: Layout,
+    redirect: '/permission/page',
+    alwaysShow: true, 
+    name: 'Permission',
+    meta: {
+      title: 'Permission',
+      icon: 'lock',
+      // 核心代码，可以通过配的角色来进行遍历，从而是否展示
+      // 这个意思就是admin、editor这两个角色，这个菜单是可以显示
+      roles: ['admin', 'editor']
+    },
+    children: [
+      {
+        path: 'page',
+        component: () =&gt; import('@/views/permission/page'),
+        name: 'PagePermission',
+        meta: {
+          title: 'Page Permission',
+          // 这个意思就是只有admin能展示
+          roles: ['admin']
+        }
+      }
+     ]
+    }
+]
+
+const createRouter = () =&gt; new Router({
+  scrollBehavior: () =&gt; ({ y: 0 }),
+  routes: constantRoutes
+})
+
+const router = createRouter()
+
+// 这个是重置路由用的，很有用，别看这么几行代码
+export function resetRouter() {
+  const newRouter = createRouter()
+  router.matcher = newRouter.matcher 
+}
+
+export default router
+</code></pre></div><h4 id="_2、store-permission-js-在vuex维护一个state-通过配角色来控制菜单显不显示"><a href="#_2、store-permission-js-在vuex维护一个state-通过配角色来控制菜单显不显示" class="header-anchor">#</a> 2、store/permission.js(在vuex维护一个state，通过配角色来控制菜单显不显示)</h4> <div class="language- extra-class"><pre><code>import { asyncRoutes, constantRoutes } from '@/router'
+
+// 这个方法是用来把角色和route.meta.role来进行匹配
+function hasPermission(roles, route) {
+  if (route.meta &amp;&amp; route.meta.roles) {
+    return roles.some(role =&gt; route.meta.roles.includes(role))
+  } else {
+    return true
+  }
+}
+
+
+// 这个方法是通过递归来遍历路由，把有权限的路由给遍历出来
+export function filterAsyncRoutes(routes, roles) {
+  const res = []
+
+  routes.forEach(route =&gt; {
+    const tmp = { ...route }
+    if (hasPermission(roles, tmp)) {
+      if (tmp.children) {
+        tmp.children = filterAsyncRoutes(tmp.children, roles)
+      }
+      res.push(tmp)
+    }
+  })
+
+  return res
+}
+
+const state = {
+  routes: [],
+  addRoutes: []
+}
+
+const mutations = {
+  SET_ROUTES: (state, routes) =&gt; {
+    // 这个地方维护了两个状态一个是addRouters，一个是routes
+    state.addRoutes = routes
+    state.routes = constantRoutes.concat(routes)
+  }
+}
+
+const actions = {
+  generateRoutes({ commit }, roles) {
+    return new Promise(resolve =&gt; {
+      let accessedRoutes
+      if (roles.includes('admin')) {
+        accessedRoutes = asyncRoutes || []
+      } else {
+        // 核心代码，把路由和获取到的角色(后台获取的)传进去进行匹配
+        accessedRoutes = filterAsyncRoutes(asyncRoutes, roles)
+      }
+      // 把匹配完有权限的路由给set到vuex里面
+      commit('SET_ROUTES', accessedRoutes)
+      resolve(accessedRoutes)
+    })
+  }
+}
+
+export default {
+  namespaced: true,
+  state,
+  mutations,
+  actions
+}
+</code></pre></div><h3 id="_3、src-permission-js-新建一个路由守卫函数-可以在main-js-也可以抽离出来一个文件"><a href="#_3、src-permission-js-新建一个路由守卫函数-可以在main-js-也可以抽离出来一个文件" class="header-anchor">#</a> 3、src/permission.js（新建一个路由守卫函数，可以在main.js，也可以抽离出来一个文件）</h3> <p>这里面的代码主要是控制路由跳转之前，先查一下有哪些可访问的路由，登录以后跳转的逻辑可以在这个地方写</p> <div class="language- extra-class"><pre><code>// permission.js
+router.beforeEach((to, from, next) =&gt; {
+  if (store.getters.token) { // 判断是否有token
+    if (to.path === '/login') {
+      next({ path: '/' });
+    } else {
+        // 判断当前用户是否已拉取完user_info信息
+      if (store.getters.roles.length === 0) {
+        store.dispatch('GetInfo').then(res =&gt; { // 拉取info
+          const roles = res.data.role;
+          // 把获取到的role传进去进行匹配，生成可以访问的路由
+          store.dispatch('GenerateRoutes', { roles }).then(() =&gt; { 
+            // 动态添加可访问路由表（核心代码，没有它啥也干不了）
+            router.addRoutes(store.getters.addRouters)
+            
+            // hack方法 确保addRoutes已完成
+            next({ ...to, replace: true })
+          })
+        }).catch(err =&gt; {
+          console.log(err);
+        });
+      } else {
+        next() //当有用户权限的时候，说明所有可访问路由已生成 如访问没权限的全面会自动进入404页面
+      }
+    }
+  } else {
+    if (whiteList.indexOf(to.path) !== -1) { // 在免登录白名单，直接进入
+      next();
+    } else {
+      next('/login'); // 否则全部重定向到登录页
+    }
+  }
+})
+</code></pre></div><h3 id="_4、侧边栏的可以从vuex里面取数据来进行渲染"><a href="#_4、侧边栏的可以从vuex里面取数据来进行渲染" class="header-anchor">#</a> 4、侧边栏的可以从vuex里面取数据来进行渲染</h3> <p>核心代码是从router取可以用的路由对象，来进行侧边栏的渲染，不管是前端动态加载还是后端动态加载路由，这个代码都是一样的</p> <h5 id="layout-components-siderbar-index-vue"><a href="#layout-components-siderbar-index-vue" class="header-anchor">#</a> layout/components/siderbar/index.vue</h5> <div class="language- extra-class"><pre><code>&lt;el-menu
+:default-active=&quot;activeMenu&quot;
+:collapse=&quot;isCollapse&quot;
+:background-color=&quot;variables.menuBg&quot;
+:text-color=&quot;variables.menuText&quot;
+:unique-opened=&quot;false&quot;
+:active-text-color=&quot;variables.menuActiveText&quot;
+:collapse-transition=&quot;false&quot;
+mode=&quot;vertical&quot;
+&gt;
+    // 把取到的路由进行循环作为参数传给子组件
+    &lt;sidebar-item v-for=&quot;route in routes&quot; :key=&quot;route.path&quot; :item=&quot;route&quot; :base-path=&quot;route.path&quot; /&gt;
+&lt;/el-menu&gt;
+// 获取有权限的路由
+routes() {
+  return this.$router.options.routes
+}
+</code></pre></div><h5 id="layout-components-siderbar-siderbaritem-vue"><a href="#layout-components-siderbar-siderbaritem-vue" class="header-anchor">#</a> layout/components/siderbar/siderbarItem.vue</h5> <div class="language- extra-class"><pre><code>  &lt;template slot=&quot;title&quot;&gt;
+    &lt;item v-if=&quot;item.meta&quot; :icon=&quot;item.meta &amp;&amp; item.meta.icon&quot; :title=&quot;item.meta.title&quot; /&gt;
+  &lt;/template&gt;
+  &lt;sidebar-item
+    v-for=&quot;child in item.children&quot;
+    :key=&quot;child.path&quot;
+    :is-nest=&quot;true&quot;
+    :item=&quot;child&quot;
+    :base-path=&quot;resolvePath(child.path)&quot;
+    class=&quot;nest-menu&quot;
+  /&gt;
+
+  props: {
+    // route object
+    item: {
+      type: Object,
+      required: true
+    },
+    isNest: {
+      type: Boolean,
+      default: false
+    },
+    basePath: {
+      type: String,
+      default: ''
+    }
+  }
+</code></pre></div><p>前端控制路由，逻辑相对简单，后端只需要存这个用户的角色就可以了，前端拿用户的角色进行匹配。但是如果新增角色，就会非常痛苦，每一个都要加。</p> <h1 id="二、后端控制路由"><a href="#二、后端控制路由" class="header-anchor">#</a> 二、后端控制路由</h1> <p>后端控制路由是大部分后台管理系统的解决方案，我们公司也是通过这种方法管理路由的。具体的思路是这样的：</p> <div class="language- extra-class"><pre><code>1、用户登录以后，后端根据该用户的角色，直接生成可访问的路由数据，注意这个地方是数据
+
+2、前端根据后端返回的路由数据，转成自己需要的路由结构
+</code></pre></div><p>具体的代码逻辑：</p> <div class="language- extra-class"><pre><code>1、router.js里面只放一些静态的路由，login、404之类
+
+2、整理一份数据结构，存到表里
+
+3、从后端获取路由数据，写一个数据转换的方法，讲数据转成可访问的路由
+
+4、也是维护一个vuex状态，将转换好的路由存到vuex里面
+
+5、侧边栏也是从路由取数据进行渲染
+</code></pre></div><p>因为前段控制和后端控制，后面的流程大部分都是一样的，所以这个地方只看看前面不一样的流程：</p> <h3 id="_1、store-permission-js-在vuex里面发送请求获取数据"><a href="#_1、store-permission-js-在vuex里面发送请求获取数据" class="header-anchor">#</a> 1、store/permission.js，在vuex里面发送请求获取数据</h3> <div class="language- extra-class"><pre><code>GenerateRoutes({ commit }, data) {
+  return new Promise((resolve, reject) =&gt; {
+    getRoute(data).then(res =&gt; {
+     // 将获取到的数据进行一个转换，然后存到vuex里
+      const accessedRouters = arrayToMenu(res.data)
+      accessedRouters.concat([{ path: '*', redirect: '/404', hidden: true }])
+      commit('SET_ROUTERS', accessedRouters)
+      resolve()
+    }).catch(error =&gt; {
+      reject(error)
+    })
+  })
+}
+</code></pre></div><h3 id="_2、整理一份数据结构-存到表里"><a href="#_2、整理一份数据结构-存到表里" class="header-anchor">#</a> 2、整理一份数据结构，存到表里</h3> <p>我们知道vue的router规定的数据结构是这样的：</p> <div class="language- extra-class"><pre><code>{
+    path: '/form',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        name: 'Form',
+        component: () =&gt; import('@/views/form/index'),
+        meta: { title: 'Form', icon: 'form' }
+      }
+    ]
+}
+</code></pre></div><p>所以，一级菜单有几个参数必须要有：id、path、name、component、title，二级菜单children是一个数组，是子父级的关系，所以可以给加一个fid或者parentId，来进行匹配，后面写转换方法的时候会详细解释，数据格式大概就是这样：</p> <div class="language- extra-class"><pre><code>// 一级菜单
+// parentId为0的就可以当做一级菜单，id最好是可以选4位数，至于为什么等你开发项目的时候就知道了
+{
+    id: 1300
+    parentId: 0
+    title: &quot;企业管理&quot;
+    path: &quot;/enterprise&quot;
+    hidden: false
+    component: null
+    hidden: false
+    name: &quot;enterprise&quot;
+}，
+
+// 二级菜单
+// parentId不为0的，就可以拿parentId跟一级菜单的id去匹配，匹配上的就push到children里面
+{
+    id: 1307
+    parentId: 1300
+    title: &quot;商户信息&quot;
+    hidden: false
+    path: &quot;merchantInfo&quot;
+    component: &quot;enterprise/merchantInfo&quot; // 要跟本地的文件地址匹配上
+    hidden: false
+    name: &quot;merchantInfo&quot;
+}
+</code></pre></div><h3 id="_3、写一个转化方法-把获取到的数据转换成router结构"><a href="#_3、写一个转化方法-把获取到的数据转换成router结构" class="header-anchor">#</a> 3、写一个转化方法，把获取到的数据转换成router结构</h3> <p>刚才获取到的数据无法直接转成router进行渲染，需要一个arrayToMenu的方法，刚才也说了一些思路，下面就一起分析下这个方法：</p> <div class="language- extra-class"><pre><code>export function arrayToMenu(array) {
+  const nodes = []
+  // 获取顶级节点
+  for (let i = 0; i &lt; array.length; i++) {
+    const row = array[i]
+    // 这个exists方法就是判断下有没有子级
+    if (!exists(array, row.parentId)) {
+      nodes.push({
+        path: row.path, // 路由地址
+        hidden: row.hidden, // 全部携程true就行，如果后端没配
+        component: Layout, // 一般就是匹配你文件的component
+        name: row.name, // 路由名称
+        meta: { title: row.title, icon: row.name }, // title就是显示的名字
+        id: row.id, // 路由的id
+        redirect: 'noredirect'
+      })
+    }
+  }
+  const toDo = Array.from(nodes)
+  while (toDo.length) {
+    const node = toDo.shift()
+    // 获取子节点
+    for (let i = 0; i &lt; array.length; i++) {
+      const row = array[i]
+      // parentId等于哪个父级的id，就push到哪个
+      if (row.parentId === node.id) {
+        const child = {
+          path: row.path,
+          name: row.name,
+          hidden: row.hidden,
+          // 核心代码，因为二级路由的component是需要匹配页面的
+          component: require('@/views/' + row.component + '/index.vue'),
+          meta: { title: row.title, icon: row.name },
+          id: row.id
+        }
+        if (node.children) {
+          node.children.push(child)
+        } else {
+          node.children = [child]
+        }
+        toDo.push(child)
+      }
+    }
+  }
+  return nodes
+}
+// 看下有没有子级
+function exists(rows, parentId) {
+  for (let i = 0; i &lt; rows.length; i++) {
+    if (rows[i].id === parentId) return true
+  }
+  return false
+}
+</code></pre></div><p>侧边栏的代码跟静态的代码是一样的，就不再说一遍了</p> <h2 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h2> <p>动态路由究竟是前端控制好，还是后端控制好？只能说各有各的优势，毕竟业务场景也不一样，大家可以动手来试一下。代码还有很多值得优化的地方，欢迎各位大神批评指正。</p> <p>个人公众号：小Jerry有话说</p> <p>也欢迎关注我的个人公众号，分享一些有趣的前端知识。</p></div></div>  <div class="page-edit"><!----> <!----> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">2022/03/09, 14:17:08</span></div></div> <div class="page-nav-wapper"><div class="page-nav-centre-wrap"><a href="/pages/f8599a/" class="page-nav-centre page-nav-centre-prev"><div class="tooltip">vue性能优化方案，解决首页加载慢</div></a> <a href="/pages/b478f3/" class="page-nav-centre page-nav-centre-next"><div class="tooltip">一节课彻底弄懂promise、async、await（一）</div></a></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/pages/f8599a/" class="prev">vue性能优化方案，解决首页加载慢</a></span> <span class="next"><a href="/pages/b478f3/">一节课彻底弄懂promise、async、await（一）</a>→
+      </span></p></div></div></div> <div class="article-list"><div class="article-title"><a href="/archives/" class="iconfont icon-bi">最近更新</a></div> <div class="article-wrapper"><dl><dd>01</dd> <dt><a href="/pages/f79f4b/"><div>
+            flutter开发过程中遇到的坑
+            <!----></div></a> <span class="date">03-09</span></dt></dl><dl><dd>02</dd> <dt><a href="/pages/adc5bc/"><div>
+            我们的父辈观后感
+            <!----></div></a> <span class="date">03-04</span></dt></dl><dl><dd>03</dd> <dt><a href="/pages/90e4ae/"><div>
+            记在清华学姐事件后
+            <!----></div></a> <span class="date">03-04</span></dt></dl> <dl><dd></dd> <dt><a href="/archives/" class="more">更多文章&gt;</a></dt></dl></div></div></main></div> <div class="footer"><div class="icons"><a href="18500892223@163.com" title="发邮件" target="_blank" class="iconfont icon-youjian"></a><a href="https://github.com/NorwegianWood1208" title="GitHub" target="_blank" class="iconfont icon-github"></a><a href="" title="听音乐" target="_blank" class="iconfont icon-erji"></a></div> 
+  Theme by
+  <a href="https://github.com/xugaoyi/vuepress-theme-vdoing" target="_blank" title="本站主题">Vdoing</a> 
+    | Copyright © 2022-2022
+    <span>Jerry</span></div> <div class="buttons"><div title="返回顶部" class="button blur go-to-top iconfont icon-fanhuidingbu" style="display:none;"></div> <div title="去评论" class="button blur go-to-comment iconfont icon-pinglun" style="display:none;"></div> <div title="主题模式" class="button blur theme-mode-but iconfont icon-zhuti"><ul class="select-box" style="display:none;"><li class="iconfont icon-zidong">
+          跟随系统
+        </li><li class="iconfont icon-rijianmoshi">
+          浅色模式
+        </li><li class="iconfont icon-yejianmoshi">
+          深色模式
+        </li><li class="iconfont icon-yuedu">
+          阅读模式
+        </li></ul></div></div> <div class="body-bg" style="background:url() center center / cover no-repeat;opacity:0.5;"></div> <!----> <!----></div><div class="global-ui"><APlayer audio="" fixed="true" mini="true" autoplay="autoplay" theme="#b7daff" loop="loop" order="list" preload="auto" volume="0.15" mutex="true" lrc-type="3" list-max-height="250" storage-name="vuepress-plugin-meting" id="aplayer-fixed"></APlayer><div></div></div></div>
+    <script src="/assets/js/app.833fe341.js" defer></script><script src="/assets/js/2.0bc0feeb.js" defer></script><script src="/assets/js/70.fcfc76ae.js" defer></script>
+  </body>
+</html>
