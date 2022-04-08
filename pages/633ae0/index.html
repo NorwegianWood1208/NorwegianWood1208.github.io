@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>你不一定了解的js数据类型（二） | Jerry&#39;s blog</title>
+    <meta name="generator" content="VuePress 1.9.5">
+    <link rel="icon" href="/img/j_by_climei.png">
+    <meta name="description" content="个人博客,分享自己对于这个世界一些不客观的观点。">
+    <meta name="keywords" content="前端博客,个人技术博客,前端,前端开发,前端框架,web前端,前端面试题,技术文档,学习,面试,JavaScript,js,ES6,TypeScript,vue,python,css3,html5,Node,git,github,markdown">
+    <meta name="theme-color" content="#11a8cd">
+    
+    <link rel="preload" href="/assets/css/0.styles.bf9de544.css" as="style"><link rel="preload" href="/assets/js/app.9cb1f19e.js" as="script"><link rel="preload" href="/assets/js/2.0bc0feeb.js" as="script"><link rel="preload" href="/assets/js/65.17b7b15e.js" as="script"><link rel="prefetch" href="/assets/js/10.1104f850.js"><link rel="prefetch" href="/assets/js/11.cff962a2.js"><link rel="prefetch" href="/assets/js/12.45803858.js"><link rel="prefetch" href="/assets/js/13.3bb253bd.js"><link rel="prefetch" href="/assets/js/14.298ed1c7.js"><link rel="prefetch" href="/assets/js/15.9cf880c1.js"><link rel="prefetch" href="/assets/js/16.4d631815.js"><link rel="prefetch" href="/assets/js/17.70658a19.js"><link rel="prefetch" href="/assets/js/18.fbaad84a.js"><link rel="prefetch" href="/assets/js/19.6be33de3.js"><link rel="prefetch" href="/assets/js/20.11c4dac2.js"><link rel="prefetch" href="/assets/js/21.14868f9d.js"><link rel="prefetch" href="/assets/js/22.7c13d14f.js"><link rel="prefetch" href="/assets/js/23.d196009f.js"><link rel="prefetch" href="/assets/js/24.d3bd2e68.js"><link rel="prefetch" href="/assets/js/25.620d8cda.js"><link rel="prefetch" href="/assets/js/26.f7f4586c.js"><link rel="prefetch" href="/assets/js/27.8f91223e.js"><link rel="prefetch" href="/assets/js/28.2ac57285.js"><link rel="prefetch" href="/assets/js/29.299073f4.js"><link rel="prefetch" href="/assets/js/3.01307bd0.js"><link rel="prefetch" href="/assets/js/30.ff2e9f28.js"><link rel="prefetch" href="/assets/js/31.b7095a2a.js"><link rel="prefetch" href="/assets/js/32.c5b6bd50.js"><link rel="prefetch" href="/assets/js/33.08a8722c.js"><link rel="prefetch" href="/assets/js/34.2de49dee.js"><link rel="prefetch" href="/assets/js/35.1e12674e.js"><link rel="prefetch" href="/assets/js/36.2358fbb6.js"><link rel="prefetch" href="/assets/js/37.c12aa929.js"><link rel="prefetch" href="/assets/js/38.37a330b8.js"><link rel="prefetch" href="/assets/js/39.ad62093f.js"><link rel="prefetch" href="/assets/js/4.5e4dc84d.js"><link rel="prefetch" href="/assets/js/40.c8b1408e.js"><link rel="prefetch" href="/assets/js/41.787246d6.js"><link rel="prefetch" href="/assets/js/42.9c197107.js"><link rel="prefetch" href="/assets/js/43.e901a6f9.js"><link rel="prefetch" href="/assets/js/44.588ce2ee.js"><link rel="prefetch" href="/assets/js/45.fdfbd868.js"><link rel="prefetch" href="/assets/js/46.e3de3d4a.js"><link rel="prefetch" href="/assets/js/47.0ef7e1d1.js"><link rel="prefetch" href="/assets/js/48.d603b023.js"><link rel="prefetch" href="/assets/js/49.f32889cd.js"><link rel="prefetch" href="/assets/js/5.94358016.js"><link rel="prefetch" href="/assets/js/50.b357ce03.js"><link rel="prefetch" href="/assets/js/51.13c74eb8.js"><link rel="prefetch" href="/assets/js/52.6c6ce447.js"><link rel="prefetch" href="/assets/js/53.bf069b2d.js"><link rel="prefetch" href="/assets/js/54.fc6d67a1.js"><link rel="prefetch" href="/assets/js/55.8258d0a9.js"><link rel="prefetch" href="/assets/js/56.68529a85.js"><link rel="prefetch" href="/assets/js/57.1b1d3bc4.js"><link rel="prefetch" href="/assets/js/58.54348f2d.js"><link rel="prefetch" href="/assets/js/59.5629df99.js"><link rel="prefetch" href="/assets/js/6.1f2fd4f4.js"><link rel="prefetch" href="/assets/js/60.e3477a1f.js"><link rel="prefetch" href="/assets/js/61.29ff0b65.js"><link rel="prefetch" href="/assets/js/62.96c26440.js"><link rel="prefetch" href="/assets/js/63.0286342e.js"><link rel="prefetch" href="/assets/js/64.332aac5b.js"><link rel="prefetch" href="/assets/js/66.39f199a1.js"><link rel="prefetch" href="/assets/js/67.9c07a989.js"><link rel="prefetch" href="/assets/js/68.1f254afc.js"><link rel="prefetch" href="/assets/js/69.09e8e338.js"><link rel="prefetch" href="/assets/js/7.0fe34cf8.js"><link rel="prefetch" href="/assets/js/70.f6ba88fb.js"><link rel="prefetch" href="/assets/js/71.5d4f8376.js"><link rel="prefetch" href="/assets/js/72.a8829a36.js"><link rel="prefetch" href="/assets/js/73.1c21bb9c.js"><link rel="prefetch" href="/assets/js/74.64090263.js"><link rel="prefetch" href="/assets/js/75.01355625.js"><link rel="prefetch" href="/assets/js/76.967c88d7.js"><link rel="prefetch" href="/assets/js/77.4547662a.js"><link rel="prefetch" href="/assets/js/78.7cd3bc48.js"><link rel="prefetch" href="/assets/js/79.9f472e94.js"><link rel="prefetch" href="/assets/js/8.c6a036e6.js"><link rel="prefetch" href="/assets/js/80.7bc134d3.js"><link rel="prefetch" href="/assets/js/81.c30cd535.js"><link rel="prefetch" href="/assets/js/82.802229cb.js"><link rel="prefetch" href="/assets/js/9.bf0db27c.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.bf9de544.css">
+  </head>
+  <body class="theme-mode-light">
+    <div id="app" data-server-rendered="true"><div class="theme-container sidebar-open have-rightmenu have-body-img"><header class="navbar blur"><div title="目录" class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/img/j_by_climei.png" alt="Jerry's blog" class="logo"> <span class="site-name can-hide">Jerry's blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="读书" class="dropdown-title"><a href="/read/" class="link-title">读书</a> <span class="title" style="display:none;">读书</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/read/fdba22/" class="nav-link">2022年2月</a></li><li class="dropdown-item"><!----> <a href="/read/a61298/" class="nav-link">《沧浪之水》</a></li><li class="dropdown-item"><!----> <a href="/pages/bd7714/" class="nav-link">《置身事内》</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="生活" class="dropdown-title"><a href="/life/" class="link-title">生活</a> <span class="title" style="display:none;">生活</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/pages/bb5866/" class="nav-link">转载禅与摩托车维修</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="技术" class="dropdown-title"><a href="/technology/" class="link-title">技术</a> <span class="title" style="display:none;">技术</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/pages/0c8a93/" class="nav-link">快速配置前端的Macbook</a></li><li class="dropdown-item"><!----> <a href="/pages/811b36/" class="nav-link">vite核心原理及在vue2项目中的使用</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="更多" class="dropdown-title"><a href="/more/" class="link-title">更多</a> <span class="title" style="display:none;">更多</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>足球</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/pages/4c17d5/" class="nav-link">《记在2021年法国队淘汰后》</a></li><li class="dropdown-subitem"><a href="/pages/96be87/" class="nav-link">我们为什么喜欢足球</a></li></ul></li></ul></div></div><div class="nav-item"><a href="/about/" class="nav-link">关于</a></div><div class="nav-item"><a href="/pages/beb6c0bd8a66cea6/" class="nav-link">收藏</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="索引" class="dropdown-title"><a href="/archives/" class="link-title">索引</a> <span class="title" style="display:none;">索引</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/" class="nav-link">分类</a></li><li class="dropdown-item"><!----> <a href="/tags/" class="nav-link">标签</a></li><li class="dropdown-item"><!----> <a href="/archives/" class="nav-link">归档</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <div class="sidebar-hover-trigger"></div> <aside class="sidebar" style="display:none;"><div class="blogger"><img src="https://img1.baidu.com/it/u=3110618223,3718234292&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPG?w=500&amp;h=694"> <div class="blogger-info"><h3>Jerry</h3> <span>Kop、摇滚迷、web前端</span></div></div> <nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">首页</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="读书" class="dropdown-title"><a href="/read/" class="link-title">读书</a> <span class="title" style="display:none;">读书</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/read/fdba22/" class="nav-link">2022年2月</a></li><li class="dropdown-item"><!----> <a href="/read/a61298/" class="nav-link">《沧浪之水》</a></li><li class="dropdown-item"><!----> <a href="/pages/bd7714/" class="nav-link">《置身事内》</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="生活" class="dropdown-title"><a href="/life/" class="link-title">生活</a> <span class="title" style="display:none;">生活</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/pages/bb5866/" class="nav-link">转载禅与摩托车维修</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="技术" class="dropdown-title"><a href="/technology/" class="link-title">技术</a> <span class="title" style="display:none;">技术</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/pages/0c8a93/" class="nav-link">快速配置前端的Macbook</a></li><li class="dropdown-item"><!----> <a href="/pages/811b36/" class="nav-link">vite核心原理及在vue2项目中的使用</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="更多" class="dropdown-title"><a href="/more/" class="link-title">更多</a> <span class="title" style="display:none;">更多</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><h4>足球</h4> <ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/pages/4c17d5/" class="nav-link">《记在2021年法国队淘汰后》</a></li><li class="dropdown-subitem"><a href="/pages/96be87/" class="nav-link">我们为什么喜欢足球</a></li></ul></li></ul></div></div><div class="nav-item"><a href="/about/" class="nav-link">关于</a></div><div class="nav-item"><a href="/pages/beb6c0bd8a66cea6/" class="nav-link">收藏</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="索引" class="dropdown-title"><a href="/archives/" class="link-title">索引</a> <span class="title" style="display:none;">索引</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/" class="nav-link">分类</a></li><li class="dropdown-item"><!----> <a href="/tags/" class="nav-link">标签</a></li><li class="dropdown-item"><!----> <a href="/archives/" class="nav-link">归档</a></li></ul></div></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>全栈进阶</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>前端技术</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/pages/a35111/" class="sidebar-link">pdfjs实战</a></li><li><a href="/pages/2f782e/" class="sidebar-link">快速配置前端开发的Macbook</a></li><li><a href="/pages/c85756/" class="sidebar-link">vite在vue2项目中的使用</a></li><li><a href="/pages/bcc749/" class="sidebar-link">基于vue3+typescript的后台管理系统</a></li><li><a href="/pages/bd0229/" class="sidebar-link">一小时上手webpack（基础使用指南含demo）</a></li><li><a href="/pages/06b0e3/" class="sidebar-link">nodejs搭建本地服务器来访问本地文件</a></li><li><a href="/pages/a891b9/" class="sidebar-link">前端模块化发展历史</a></li><li><a href="/pages/1fff49/" class="sidebar-link">nodejs实现一个基础的后台服务</a></li><li><a href="/pages/831830/" class="sidebar-link">从零开源一个基于vue的组件到npm</a></li><li><a href="/pages/64c470/" class="sidebar-link">一节课彻底弄懂同步异步</a></li><li><a href="/pages/d82546/" class="sidebar-link">类似商品筛选的插件</a></li><li><a href="/pages/1e2fa8/" class="sidebar-link">elementTable组件固定表头且高度自适应</a></li><li><a href="/pages/db2556/" class="sidebar-link">js高阶函数和单例设计模式</a></li><li><a href="/pages/33f02d/" class="sidebar-link">js 变量提升</a></li><li><a href="/pages/ac4ec8/" class="sidebar-link">nodeJs获取常用的4种post请求参数</a></li><li><a href="/pages/eb3d07/" class="sidebar-link">买一个服务器搭建node服务</a></li><li><a href="/pages/f8599a/" class="sidebar-link">vue性能优化方案，解决首页加载慢</a></li><li><a href="/pages/a3201e/" class="sidebar-link">动态路由前端控制还是后端控制</a></li><li><a href="/pages/b478f3/" class="sidebar-link">一节课彻底弄懂promise、async、await（一）</a></li><li><a href="/pages/633ae0/" aria-current="page" class="active sidebar-link">你不一定了解的js数据类型（二）</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/pages/0016fb/" class="sidebar-link">你不一定了解的js数据类型（一）</a></li><li><a href="/pages/96fde7/" class="sidebar-link">一节课彻底弄懂promise、async、await（三）完结篇</a></li><li><a href="/pages/cb71ab/" class="sidebar-link">一节课彻底弄懂promise、async、await（二）</a></li><li><a href="/pages/803139/" class="sidebar-link">js闭包</a></li></ul></section></li></ul> </aside> <div><main class="page"><div class="theme-vdoing-wrapper "><div class="articleInfo-wrap" data-v-0c557b5e><div class="articleInfo" data-v-0c557b5e><ul class="breadcrumbs" data-v-0c557b5e><li data-v-0c557b5e><a href="/" title="首页" class="iconfont icon-home router-link-active" data-v-0c557b5e></a></li> <li data-v-0c557b5e><a href="/technology/#技术" data-v-0c557b5e>技术</a></li><li data-v-0c557b5e><a href="/technology/#前端技术" data-v-0c557b5e>前端技术</a></li></ul> <div class="info" data-v-0c557b5e><div title="作者" class="author iconfont icon-touxiang" data-v-0c557b5e><a href="https://github.com/NorwegianWood1208" target="_blank" title="作者" class="beLink" data-v-0c557b5e>Jerry</a></div> <div title="创建时间" class="date iconfont icon-riqi" data-v-0c557b5e><a href="javascript:;" data-v-0c557b5e>2022-03-09</a></div> <!----></div></div></div> <!----> <div class="content-wrapper"><div class="right-menu-wrapper"><div class="right-menu-margin"><div class="right-menu-content"></div></div></div> <h1><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAABH1JREFUSA3tVl1oHFUUPmdmd2ltklqbpJDiNnXFmgbFktho7YMPNiJSSZM0+CAYSkUELVhM6YuwIPpgoOKDqOBDC0XE2CQoNtQXBUFTTcCi+Wlh1V2TQExsUzcltd3M9Tt3ZjZzZ2fT+OJTL8yeM+eee757fmeJbq//KQL8X3DUSFOcfr7cRsRtxNQMWueeVzOkaITIGqQHNg5y8+jNW9ldM7A6nTpAjuolUikAwq7CE3WcM2RRDz+XGVgN3FptU/aUSlvq9Pa3iZ1+sgAqJyyAFqkipd9dqiwHF3P65YycLWc/6sqGrvoEoIp6DOFaX5h6+dnfjkWprwqsPk0dUGq5vySwDImC10KxFHgGL1SWoc92O3eVht09qdXNH11I2SsTsJYqMWzihqGMi+A+Garf3BAuuLI5oGlULyNfyB/HYNujwktOfRrMr5t77NmevqaUopx0grnKAyvVpmwUDB4x6FPXuGvYLTDwWsejwgtgkYKPqRJg8SV6xaiZ3ZTppGneS4yfH5/66fZSDHv+QZci/+h5c5UHtpy67JUqGppM0sh0Nc1dW6/N1W5Yoqat8/TU/VnadmdeW2PLLSyh0cvxBs3KbqTmwYPpxN4do/mzE8nEpvX/UMu2Wbp74zUAK5q6WkHns7V0eWkdPbPzd3rxkTGybadYySumVzhcaJFbs5UrEkQ/+CK8gF5dnh/6ciIZ73gwQ927L1IitoxKLXYP3SjYdOrHHfTZhRRlFyrorafPk20B3HPD1y2G3qKZME5Jcf3t/HUC13/8tSd++vqFveMUTwAUxSUFI1QekR1+bIze3D9MF2aq6cPvG72CgnldWCFqyRw3lwH8ZMerjTD9ElRO7Gv44wNpC90aASqGfVlz/Rx17srQ57/UU26hkhQqUB7dBR71WmzQhHUnblGmVOEw0jhbV1n9OlXUDCIRGaNV5Jp43N516fN7JmnTHdfp7Hgy0luO4aMhtkLL8Bi3bUWYvzh5Mn1dTxrL6QmGuRhGL/TiTTxRoEdTszSaq9GR0NGA3KdkOz3hqSV3MIDhQ5IVX/Ivx3umBti2es2h4eZby7x8br1rkf7Mo90AqC8aQ3sJeNzqFRu+vSANAQe3PL7l0HGOAdwDCeZYvNKeoZp1Qfs6Aipndh86HmFRi0LAnEO47wsqM6cdfjh3jBPUzhZy7nvlUfFsamED1VQt6aISHVymXZ/B2aCtIG8AI8xfobj2d3en1wWVhOeHELKmLQ1s211s88comkv4UCwWyF787mJdYXtNfhKAXVqnKTq8QZvGAGGOfaTo5pGZ/PwbUCr5+DPr/1J92JNHr9aOl/F3iI5+O1nfybsGxoimvZ3ViWSluDITw3P37mypheDIPY0tw7+O/5ApbkYw+zpfaUVu32Pi98+defdUhEpZkRFq0aqyNh9FuL9hpYbEm6iwi0z2REd09ZmyENEbuhjDWzKvZXTqKYaBIr3tt5kuPtQBZFvEUwHt60vfCNu41XsksH9Ij1BMMz1Y0OOunHNShFIP5868g5zeXmuLwL9T4b6Q2+KejgAAAABJRU5ErkJggg==">你不一定了解的js数据类型（二）<!----></h1>  <div class="theme-vdoing-content content__default"><p>上篇文章聊了js两种数据类型的区别以及基本数据类型，这篇文章主要聊一下js的引用数据类型、包装对象、js的强转换、隐性数据类型转换。</p> <h1 id="一、引用数据类型"><a href="#一、引用数据类型" class="header-anchor">#</a> 一、引用数据类型</h1> <p>在ECMAScript中，引用类型是一种数据结构，用于将数据和功能组织在一起。</p> <p>除了对象，引用数据类型还有很多：</p> <div class="language- extra-class"><pre><code>Array 数组
+Date 日期
+RegExp 正则
+Function 函数
+</code></pre></div><p>除了上面的数据类型，还有三个比较特殊的（基本数据类型的包装对象）：</p> <h3 id="包装对象"><a href="#包装对象" class="header-anchor">#</a> 包装对象</h3> <div class="language- extra-class"><pre><code>Boolean
+Number
+String
+</code></pre></div><p>大家可能遇到过一道面试题：</p> <div class="language- extra-class"><pre><code>let num1 = 3
+let num2 = new Number(3)
+console.log(num === num2)  // false
+</code></pre></div><p>这个Number()就是基本数据类型的number的包装对象:</p> <div class="language- extra-class"><pre><code>typeof(num1) // number
+typeof(num2) // object
+</code></pre></div><p>这两个不是一个东西，当然也不相等了，那么我们就来搞清楚，这个包装对象到底是干什么的？</p> <div class="language- extra-class"><pre><code>let str = 'wanghuahua'
+let str1 = str.substr(0, 4)
+console.log(str1) // wang
+console.log(String.substr) // undefined
+</code></pre></div><p>刚才调用substr方法截取了一下str这个字符串，str是基本数据类型，打印String的substr方法是undefined，这说明String是没有substr方法的，但是为什么能够截取呢？</p> <p>这中间有一个计算机的操作，我们把它称作‘加工厂’，那么这个加工厂进行了哪些操作呢？（重点）</p> <div class="language- extra-class"><pre><code>1、原材料进厂：把基本数据类型转成包装对象
+
+因为基本数据类型是没有方法的，如果你想操作基本数据类型，那就必须转成包装对象
+
+2、加工：调用substr的相关方法
+
+包装对象是可以加方法和属性，所以这个时候包装对象会调用方法进行操作
+
+3、成品出厂：包装对象转成基本数据类型
+
+ECMAScript规范中提供了toPrimitive原则，所以这个地方会遵从toPrimitive原则进行转换。
+</code></pre></div><p>上篇文章说到了，这个js弱类型语言把相当多的操作都交给了计算机，这个地方就是一个明显的栗子，这些操作就都交给了计算机，相对来说增加了计算机的负担。</p> <p>包装对象的由来，其实也没有那么复杂，就是为了处理基本数据类型的数据，加了中间的一层。</p> <p>刚才在说成品出厂的时候，聊到了toPrimitive，toPrimitive就是我们常说的js强制转换：</p> <h1 id="二、js强制转换"><a href="#二、js强制转换" class="header-anchor">#</a> 二、js强制转换</h1> <p>所谓强制转换，就是人为的进行转换：</p> <h3 id="一-tostring-转成字符串"><a href="#一-tostring-转成字符串" class="header-anchor">#</a> （一）toString() 转成字符串</h3> <div class="language- extra-class"><pre><code>let num2 = new String('hhh')
+console.log(num2.toString()) // hhh
+</code></pre></div><p>每个对象都有一个 toString()方法，当对象被表示为文本值时或者当以期望字符串的方式引用对象时，该方法被自动调用。</p> <p>有时候会有一些非常恶心的面试题，这儿也列举几个不常见的：</p> <div class="language- extra-class"><pre><code>console.log(null.toString()) // 报错
+console.log(undefined.toString()) // 报错
+console.log(true.toString()) // 'true'
+let a = 4
+console.log(a.toString()) // 4
+console.log('hhh'.toString()) // 'hhh'
+console.log(Symbol().toString()) // 报错
+</code></pre></div><p>除此之外，toString()还接收数字参数，来代表转换的进制：</p> <div class="language- extra-class"><pre><code>二进制：.toString(2);
+
+八进制：.toString(8);
+
+十进制：.toString(10);
+
+十六进制：.toString(16);
+</code></pre></div><h3 id="二-valueof-返回原始值"><a href="#二-valueof-返回原始值" class="header-anchor">#</a> （二）valueOf() 返回原始值</h3> <div class="language- extra-class"><pre><code>let num2 = new String('hhh')
+console.log(num2.valueOf())  // hhh
+</code></pre></div><p>JavaScript 调用 valueOf()方法用来把对象转换成原始类型的值（数值、字符串和布尔值）。但是我们很少需要自己调用此函数，valueOf 方法一般都会被 JavaScript 自动调用。</p> <div class="language- extra-class"><pre><code>String =&gt; 返回字符串
+Number =&gt; 返回数字
+Date =&gt; 返回时间戳
+Boolean =&gt; 返回Boolean的this值
+Object =&gt; 返回this
+</code></pre></div><p>上面两种方法都是object的方法，除了这两个方法之外，还有三个运算符：</p> <h3 id="三-number运算符-尽量搞成数字"><a href="#三-number运算符-尽量搞成数字" class="header-anchor">#</a> （三）Number运算符 尽量搞成数字</h3> <div class="language- extra-class"><pre><code>null 转换为 0
+undefined 转换为 NaN
+true 转换为 1，false 转换为 0
+字符串转换时遵循数字常量规则，转换失败返回NaN
+</code></pre></div><h3 id="四-string运算符-全部转成字符串"><a href="#四-string运算符-全部转成字符串" class="header-anchor">#</a> （四）String运算符 全部转成字符串</h3> <p>刚才看toString的时候，null和undefined都会报错，但是String就不会报错，万物皆可转，（也不是那么绝对）但是String运算符没办法接收参数。</p> <div class="language- extra-class"><pre><code>String(null) // null
+string(undefined) // undefined
+</code></pre></div><h3 id="五-boolean运算符-全部转成true或者false"><a href="#五-boolean运算符-全部转成true或者false" class="header-anchor">#</a> （五）Boolean运算符 全部转成true或者false</h3> <p>Boolean也很好理解，就是转成布尔值，只需要记住，一下几种转成false，其余的全部是true就行了。</p> <div class="language- extra-class"><pre><code>undefined
+null
+-0
+0或+0
+NaN
+''（空字符串）
+</code></pre></div><p>除了这六种，其余全部都是true，什么空对象，空数组全部都是true，甚至这种：</p> <div class="language- extra-class"><pre><code>Boolean(new Boolean(false)) // true
+</code></pre></div><h3 id="六-toprimitive运算符-转换成原始值"><a href="#六-toprimitive运算符-转换成原始值" class="header-anchor">#</a> (六)ToPrimitive运算符 转换成原始值</h3> <p>除了上面五种方法，js还有一个相对综合了一下的ToPrimitive，它对基础数据类型是没用的，只有引用数据类型可以。</p> <div class="language- extra-class"><pre><code>ToPrimitive(obj,type)
+</code></pre></div><p>ToPrimitive运算符接受一个需要转换的对象值，以及一个可选择的type值，根据这个可选的type值，来进行转换：</p> <div class="language- extra-class"><pre><code>type为string:
+
+先调用obj的toString方法，如果为原始值，则return，否则进行第2步
+调用obj的valueOf方法，如果为原始值，则return，否则进行第3步
+抛出TypeError 异常
+
+type为number:
+
+先调用obj的valueOf方法，如果为原始值，则return，否则进行第2步
+调用obj的toString方法，如果为原始值，则return，否则第3步
+抛出TypeError 异常
+
+type参数为空
+
+该对象为Date，则type被设置为String
+否则，type被设置为Number
+</code></pre></div><h1 id="三、隐式数据类型转换"><a href="#三、隐式数据类型转换" class="header-anchor">#</a> 三、隐式数据类型转换</h1> <p>因为js是所类型语言，所以相对语法非常宽松，字符串可以和数字运算，数字还能和布尔值运算，在运算过程中就产生了隐式数据类型转换，首先，隐式转换有下面三个原则：</p> <h5 id="_1、遇到-字符串连接符-就转成string类型"><a href="#_1、遇到-字符串连接符-就转成string类型" class="header-anchor">#</a> 1、遇到+（字符串连接符）就转成string类型：</h5> <h5 id="_2、转成number类型"><a href="#_2、转成number类型" class="header-anchor">#</a> 2、转成number类型：</h5> <div class="language- extra-class"><pre><code>++/--(自增自减运算符) 
++ - * / %(算术运算符) 
+&gt; &lt; &gt;= &lt;= == != === !=== (关系运算符)
+</code></pre></div><h5 id="_3、遇到-逻辑非运算符-就转成boolean类型"><a href="#_3、遇到-逻辑非运算符-就转成boolean类型" class="header-anchor">#</a> 3、遇到 !（逻辑非运算符），就转成boolean类型：</h5> <p>但是，这里面还有很多常见的坑，比如：</p> <h3 id="_1、字符串拼接的-和算数运算符的-都是-到底是哪个"><a href="#_1、字符串拼接的-和算数运算符的-都是-到底是哪个" class="header-anchor">#</a> 1、字符串拼接的+和算数运算符的+都是+，到底是哪个？</h3> <div class="language- extra-class"><pre><code>常见的面试题：
+
+console.log(1 + 'true') // '1true'
+console.log(1 + true) // 2
+console.log(1 + null) // 1
+console.log(1 + undefined) // NaN
+console.log(null + undefined) //NaN
+</code></pre></div><p>关于字符串拼接+和算数运算符+，有个原则，只要有一边是字符串，那这个+就是字符串拼接符，其余的所有的情况都是算数运算符。</p> <div class="language- extra-class"><pre><code>console.log(1 + 'true') // '1true'
+
+'true'是字符串，所以是字符串拼接，只要是字符串拼接，两边都会调用String运算符
+
+console.log(1 + true) // 2 Number(1)+Number(true) 1+1 2
+console.log(1 + null) // 1 Number(1)+Number(null) 1+0 1
+console.log(1 + undefined) // Number(1)+Number(undefined) 0+undefined NaN
+console.log(null + undefined) //Number(null)+Number(undefined) 0+undefined NaN
+
+上面的没有一边是字符串，所以是运算符，如果被当做运算符，那么两边都会调用Number运算符
+</code></pre></div><h3 id="_2、关系运算符-为什么2-10-2-10"><a href="#_2、关系运算符-为什么2-10-2-10" class="header-anchor">#</a> 2、关系运算符，为什么2&lt;'10','2'&gt;'10'?</h3> <div class="language- extra-class"><pre><code>常见的面试题：
+
+console.log(2&gt;'10') // false
+console.log('2'&gt;'10') // true
+</code></pre></div><h5 id="如果关系运算符一边是字符串-那么会调用number运算符-把两边转成数字-再比较"><a href="#如果关系运算符一边是字符串-那么会调用number运算符-把两边转成数字-再比较" class="header-anchor">#</a> 如果关系运算符一边是字符串，那么会调用Number运算符，把两边转成数字，再比较</h5> <h5 id="如果关系运算符两边都是字符串-会用charcodeat-方法转成数字-再比较"><a href="#如果关系运算符两边都是字符串-会用charcodeat-方法转成数字-再比较" class="header-anchor">#</a> 如果关系运算符两边都是字符串，会用charCodeAt()方法转成数字，再比较</h5> <div class="language- extra-class"><pre><code>console.log(2&gt;'10') // Number(2)&gt;Number(10) 2&gt;10 false 
+console.log('2'&gt;'10') //2.charCodeAt()&gt;10.charCodeAt() 50&gt;49 true
+</code></pre></div><p>'2'&gt;'10'进行charCodeAt()的时候，会先比第一个字节，如果不一样，直接就返回结果，如果第一个一样会接着比第二个字节。就是2.charCodeAt()会先跟1.charCodeAt()进行比较。</p> <h3 id="_3、引用数据类型在进行隐式转换的时候-会先转成string。"><a href="#_3、引用数据类型在进行隐式转换的时候-会先转成string。" class="header-anchor">#</a> 3、引用数据类型在进行隐式转换的时候，会先转成string。</h3> <div class="language- extra-class"><pre><code>console.log([1,2] == '1,2') //true
+
+在这个过程中[1,2]是引用数据类型，会先调用valueOf()方法
+如果返回的还是引用数据类型，再调用toString()方法
+</code></pre></div><h3 id="_4、逻辑非运算符和关系运算符-为啥-0-0-重点"><a href="#_4、逻辑非运算符和关系运算符-为啥-0-0-重点" class="header-anchor">#</a> 4、逻辑非运算符和关系运算符，为啥[] == 0,![] == 0？（重点）</h3> <h4 id="入门级别"><a href="#入门级别" class="header-anchor">#</a> 入门级别：</h4> <div class="language- extra-class"><pre><code>console.log([] == 0) // true
+console.log(![] == 0) // true
+</code></pre></div><p>为啥[]等于0,![]也等于0，这不是毁三观吗？</p> <h5 id="首先分析下-0"><a href="#首先分析下-0" class="header-anchor">#</a> 首先分析下[] == 0:</h5> <div class="language- extra-class"><pre><code>1、在讲引用数据类型阴性转换的时候，我们说了引用数据类型进行隐形类型转换必须先转成string
+[].valueOf().toString() // ''
+
+2、==数据关系运算符，两边必须都转成Number
+Number('') // 0
+
+所以true
+</code></pre></div><h5 id="然后分析下-为啥也是0"><a href="#然后分析下-为啥也是0" class="header-anchor">#</a> 然后分析下![]为啥也是0：</h5> <div class="language- extra-class"><pre><code>1、在讲Boolean运算符的时候说了
+除了undefined、null、-0、0或+0、NaN、''（空字符串），其余全部都是true
+所以[]是true，那么![]就是false
+
+2、两边在转Number的时候:
+Number(false) // 0
+
+所以![] == 0也是true
+</code></pre></div><h4 id="进阶级别"><a href="#进阶级别" class="header-anchor">#</a> 进阶级别</h4> <div class="language- extra-class"><pre><code>[] == ![] //true
+[] == [] // false
+</code></pre></div><p>[]等于非[]竟然是true，[]等于他自己反倒是false？</p> <h5 id=""><a href="#" class="header-anchor">#</a> [] == ![]</h5> <div class="language- extra-class"><pre><code>1、[]还是会转成string，就是'''
+2、![]还是false
+3、‘’和false都进行Number操作都是0
+
+所以相等
+</code></pre></div><h5 id="这是个坑"><a href="#这是个坑" class="header-anchor">#</a> [] == []（这是个坑）</h5> <div class="language- extra-class"><pre><code>这个在上一篇讲栈内存的时候说了，引用数据类型在栈中存的都是地址，所以这两个肯定不一样
+</code></pre></div><h4 id="高阶级别"><a href="#高阶级别" class="header-anchor">#</a> 高阶级别</h4> <div class="language- extra-class"><pre><code>{} == !{} // false
+{} == {} // false
+</code></pre></div><p>{}和[]都是引用数据类型，为啥他是false呢？</p> <h5 id="-2"><a href="#-2" class="header-anchor">#</a> {} == !{}</h5> <div class="language- extra-class"><pre><code>1、{}还是会转成string，但是{}转成字符串是&quot;&quot;[object Object]&quot;
+2、![]还是false
+3、Number(&quot;&quot;[object Object]&quot;)和Number(false)
+
+所以不相等
+</code></pre></div><h5 id="-3"><a href="#-3" class="header-anchor">#</a> {} = {}</h5> <div class="language- extra-class"><pre><code>同理，也是比较栈内存的地址，所以false
+</code></pre></div><p>关于js的数据类型，主要的就是隐性数据类型转换，会经常出错，这个系列的两篇文章主要是聊了一下js的赋值和赋址的区别、强转换以及隐性转换我们经常出现的问题。</p> <p>个人的微信公众号：小Jerry有话说，平时会发一些技术文章和读书笔记，欢迎交流。</p> <p>后面会持续更新一些js基础的文章，有兴趣的可以点个关注。</p></div></div>  <div class="page-edit"><!----> <!----> <div class="last-updated"><span class="prefix">上次更新:</span> <span class="time">2022/03/09, 14:17:08</span></div></div> <div class="page-nav-wapper"><div class="page-nav-centre-wrap"><a href="/pages/b478f3/" class="page-nav-centre page-nav-centre-prev"><div class="tooltip">一节课彻底弄懂promise、async、await（一）</div></a> <a href="/pages/0016fb/" class="page-nav-centre page-nav-centre-next"><div class="tooltip">你不一定了解的js数据类型（一）</div></a></div> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/pages/b478f3/" class="prev">一节课彻底弄懂promise、async、await（一）</a></span> <span class="next"><a href="/pages/0016fb/">你不一定了解的js数据类型（一）</a>→
+      </span></p></div></div></div> <div class="article-list"><div class="article-title"><a href="/archives/" class="iconfont icon-bi">最近更新</a></div> <div class="article-wrapper"><dl><dd>01</dd> <dt><a href="/pages/4686ac/"><div>
+            2022年3月
+            <!----></div></a> <span class="date">04-08</span></dt></dl><dl><dd>02</dd> <dt><a href="/pages/6be4a0/"><div>
+            血酬定律
+            <!----></div></a> <span class="date">04-08</span></dt></dl><dl><dd>03</dd> <dt><a href="/pages/5185d1/"><div>
+            李光耀观天下
+            <!----></div></a> <span class="date">04-08</span></dt></dl> <dl><dd></dd> <dt><a href="/archives/" class="more">更多文章&gt;</a></dt></dl></div></div></main></div> <div class="footer"><div class="icons"><a href="18500892223@163.com" title="发邮件" target="_blank" class="iconfont icon-youjian"></a><a href="https://github.com/NorwegianWood1208" title="GitHub" target="_blank" class="iconfont icon-github"></a><a href="" title="听音乐" target="_blank" class="iconfont icon-erji"></a></div> 
+  Theme by
+  <a href="https://github.com/xugaoyi/vuepress-theme-vdoing" target="_blank" title="本站主题">Vdoing</a> 
+    | Copyright © 2022-2022
+    <span>Jerry</span></div> <div class="buttons"><div title="返回顶部" class="button blur go-to-top iconfont icon-fanhuidingbu" style="display:none;"></div> <div title="去评论" class="button blur go-to-comment iconfont icon-pinglun" style="display:none;"></div> <div title="主题模式" class="button blur theme-mode-but iconfont icon-zhuti"><ul class="select-box" style="display:none;"><li class="iconfont icon-zidong">
+          跟随系统
+        </li><li class="iconfont icon-rijianmoshi">
+          浅色模式
+        </li><li class="iconfont icon-yejianmoshi">
+          深色模式
+        </li><li class="iconfont icon-yuedu">
+          阅读模式
+        </li></ul></div></div> <div class="body-bg" style="background:url() center center / cover no-repeat;opacity:0.5;"></div> <!----> <!----></div><div class="global-ui"><APlayer audio="" fixed="true" mini="true" autoplay="autoplay" theme="#b7daff" loop="loop" order="list" preload="auto" volume="0.15" mutex="true" lrc-type="3" list-max-height="250" storage-name="vuepress-plugin-meting" id="aplayer-fixed"></APlayer><div></div></div></div>
+    <script src="/assets/js/app.9cb1f19e.js" defer></script><script src="/assets/js/2.0bc0feeb.js" defer></script><script src="/assets/js/65.17b7b15e.js" defer></script>
+  </body>
+</html>
